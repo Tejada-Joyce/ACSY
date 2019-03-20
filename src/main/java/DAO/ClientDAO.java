@@ -80,5 +80,40 @@ public class ClientDAO {
 		} finally {
 			session.close();
 		}
-	}	
+	}
+	
+	public Client saveClient(Client client){
+		try {
+			session = factory.openSession();
+			session.getTransaction().begin();
+			session.save(client);
+			session.getTransaction().commit();
+			return client;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//Rollback in case of an error occurred.
+			session.getTransaction().rollback();
+			return null;
+		} finally {
+			session.close();
+		}
+	}
+	
+	public Client UpdateClient(Client client){
+		try {
+			session = factory.openSession();
+			session.getTransaction().begin();
+			String sql = "from model.Client where id = " + Integer.toString(id);
+			Client client = (Client)session.createQuery(sql).getSingleResult();
+			session.getTransaction().commit();
+			return client;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//Rollback in case of an error occurred.
+			session.getTransaction().rollback();
+			return null;
+		} finally {
+			session.close();
+		}
+	}
 }

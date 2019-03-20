@@ -25,6 +25,10 @@ public class Client {
 	
 	@Column(name="status")
 	private int status;
+	
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private Group group;
 
 	public int getId() {
 		return id;
@@ -73,6 +77,13 @@ public class Client {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	
-	
+
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
+	}
+		
 }

@@ -1,4 +1,7 @@
 package model;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -14,6 +17,9 @@ public class Group {
 	@Column(name="name")
 	private String name;
 
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
+	private List<Client> clients = new ArrayList<>();
+	
 	public int getId() {
 		return id;
 	}
@@ -30,4 +36,12 @@ public class Group {
 		this.name = name;
 	}
 
+	public List<Client> getClients() {
+		return clients;
+	}
+
+	public void setClients(List<Client> clients) {
+		this.clients = clients;
+	}
+	
 }
