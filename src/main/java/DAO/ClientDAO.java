@@ -103,7 +103,7 @@ public class ClientDAO {
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Client where id = " + Integer.toString(id);
+			String sql = "from model.Client where id = " + Integer.toString(client.getId());
 			Client client = (Client)session.createQuery(sql).getSingleResult();
 			session.getTransaction().commit();
 			return client;
