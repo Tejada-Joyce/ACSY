@@ -10,8 +10,9 @@
     </head>
 
     <body>
+    	<h1><%= request.getParameter("email") %></h1>
 		<h2>Sign In</h2>
-		<form action="/Login" method="post">
+		<form action="Login" method="post">
 		    <fieldset>		     		       
 		        <label><span>Email:</span><input name="email" type="email" value="" placeholder="name123@acsy.com" required></label>
 		        <label><span>Password:</span><input name="password" type="password" value="" required></label>

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class Login
  */
-@WebServlet("/Login")
+@WebServlet(name = "Login", urlPatterns={"/Login"})
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -36,7 +36,10 @@ public class Login extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		//AdminDAO.validate(,)
+		request.getRequestDispatcher("index.jsp").forward(request, response);
 	}
 
 }
