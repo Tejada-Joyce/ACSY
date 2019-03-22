@@ -1,4 +1,7 @@
 package model;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -29,6 +32,9 @@ public class Client {
 	@ManyToOne
 	@JoinColumn(name = "id")
 	private Group group;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "clients")
+	private List<History> histories = new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -85,5 +91,13 @@ public class Client {
 	public void setGroup(Group group) {
 		this.group = group;
 	}
-		
+
+	public List<History> getHistories() {
+		return histories;
+	}
+
+	public void setHistories(List<History> histories) {
+		this.histories = histories;
+	}
+			
 }
