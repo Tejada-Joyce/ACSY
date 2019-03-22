@@ -27,7 +27,7 @@ public class ClientDAO {
 		return single_instance;
 	}
 	
-	public List<Client> getClients(){
+	public List<Client> getAll(){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
@@ -45,7 +45,7 @@ public class ClientDAO {
 		}
 	}
 	
-	public Client getClient(int id){
+	public Client get(int id){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
@@ -63,7 +63,7 @@ public class ClientDAO {
 		}
 	}
 	
-	public Client removeClient(int id){
+	public Client delete(int id){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
@@ -82,7 +82,7 @@ public class ClientDAO {
 		}
 	}
 	
-	public Client saveClient(Client client){
+	public Client save(Client client){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
@@ -99,12 +99,11 @@ public class ClientDAO {
 		}
 	}
 	
-	public Client UpdateClient(Client client){
+	public Client update(Client client){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Client where id = " + Integer.toString(client.getId());
-			Client client = (Client)session.createQuery(sql).getSingleResult();
+			session.update(client);
 			session.getTransaction().commit();
 			return client;
 		} catch (Exception e) {
