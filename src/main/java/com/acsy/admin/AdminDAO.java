@@ -1,8 +1,10 @@
-package DAO;
+package com.acsy.admin;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import model.Admin;
+
+import com.acsy.database.hibernate.HibernateUtils;
+
 import java.util.*;
 
 public class AdminDAO {
