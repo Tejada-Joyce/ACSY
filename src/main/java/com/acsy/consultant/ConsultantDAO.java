@@ -5,8 +5,7 @@ import org.hibernate.SessionFactory;
 
 import com.acsy.database.hibernate.HibernateUtils;
 
-import com.acsy.Client;
-import com.acsy.Consultant;
+import com.acsy.consultant.Consultant;
 import java.util.*;
 
 public class ConsultantDAO {

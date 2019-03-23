@@ -8,7 +8,7 @@
 	<session-factory>
 		<!-- Database Connection Settings -->
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://localhost:3306/test</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/cit360</property>
 		<property name="connection.username">root</property>
 		<property name="connection.password">JJTA1995</property>
 		
@@ -28,11 +28,11 @@
 		<property name="show_sql">true</property>
 		
 		<!-- Mapping to classes -->
-		<mapping class="model.Admins"/>
-		<mapping class="model.Client"/>
-		<mapping class="model.Consultant"/>
-		<mapping class="model.Group"/>
-		<mapping class="model.History"/>
+		<mapping class="com.acsy.admin.Admin"/>
+		<mapping class="com.acsy.client.Client"/>
+		<mapping class="com.acsy.consultant.Consultant"/>
+		<mapping class="com.acsy.group.Group"/>
+		<mapping class="com.acsy.history.History"/>
 	</session-factory>
 	
 </hibernate-configuration>

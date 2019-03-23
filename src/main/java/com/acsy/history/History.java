@@ -1,6 +1,10 @@
 package com.acsy.history;
 import javax.persistence.*;
 
+import com.acsy.client.Client;
+import com.acsy.consultant.Consultant;
+import com.acsy.group.Group;
+
 @Entity
 @Table(name="histories")
 
@@ -16,7 +20,7 @@ public class History {
 	
 	@Column(name="rate")
 	private int rate;
-	
+/*	
 	@ManyToOne
 	@JoinColumn(name = "id")
 	private Group group;
@@ -28,7 +32,7 @@ public class History {
 	@ManyToOne
 	@JoinColumn(name = "id")
 	private Consultant consultant;
-	
+*/	
 	public int getId() {
 		return id;
 	}
@@ -52,7 +56,7 @@ public class History {
 	public void setRate(int rate) {
 		this.rate = rate;
 	}
-
+/*
 	public Group getGroup() {
 		return group;
 	}
@@ -76,5 +80,5 @@ public class History {
 	public void setConsultant(Consultant consultant) {
 		this.consultant = consultant;
 	}
-		
+*/		
 }

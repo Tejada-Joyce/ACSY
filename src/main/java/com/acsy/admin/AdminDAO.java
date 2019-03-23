@@ -2,6 +2,7 @@ package com.acsy.admin;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 
 import com.acsy.database.hibernate.HibernateUtils;
 
@@ -31,7 +32,7 @@ public class AdminDAO {
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Admin";
+			String sql = "from com.acsy.admin.Admin";
 			List<Admin> admins = (List<Admin>)session.createQuery(sql).getResultList();
 			session.getTransaction().commit();
 			return admins;
@@ -49,7 +50,7 @@ public class AdminDAO {
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Admin where id = " + Integer.toString(id);
+			String sql = "from com.acsy.admin.Admin where id = " + Integer.toString(id);
 			Admin admin = (Admin)session.createQuery(sql).getSingleResult();
 			session.getTransaction().commit();
 			return admin;
@@ -67,9 +68,12 @@ public class AdminDAO {
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Admin where email = " + email + "and password =" + password;
-			Admin admin = (Admin)session.createQuery(sql).getSingleResult();
-			session.getTransaction().commit();
+			String sql = "from com.acsy.admin.Admin where email = :email and password = :password";
+			Query query = session.createQuery(sql);
+			query.setParameter("email", email);
+			query.setParameter("password", password);
+			Admin admin = (Admin)query.getSingleResult();
+			session.getTransaction().commit();			
 			return admin;
 		} catch (Exception e) {
 			e.printStackTrace();

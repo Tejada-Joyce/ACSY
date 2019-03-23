@@ -116,4 +116,22 @@ public class ClientDAO {
 			session.close();
 		}
 	}
+	
+	public List<Client> clientsByGroup(int group_id){
+		try {
+			session = factory.openSession();
+			session.getTransaction().begin();
+			String sql = "from model.Client where group_id = " + Integer.toString(group_id);
+			List<Client> clients = (List<Client>)session.createQuery(sql).getResultList();
+			session.getTransaction().commit();
+			return clients;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//Rollback in case of an error occurred.
+			session.getTransaction().rollback();
+			return null;
+		} finally {
+			session.close();
+		}
+	}
 }

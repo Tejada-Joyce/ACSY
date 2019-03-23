@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.acsy.admin.Admin;
+import com.acsy.admin.AdminDAO;
+
 
 /**
  * Servlet implementation class Login
@@ -38,19 +41,19 @@ public class Login extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String email = request.getParameter("email");
-    String password = request.getParameter("password");
-    
-		if (false) {
-      HttpSession session=request.getSession();  
-      session.setAttribute("session", email+password);  
+		String password = request.getParameter("password");
+		AdminDAO ad = AdminDAO.getInstance();
+		Admin admin = ad.validate(email, password);
+		if (admin != null) {
+	      HttpSession session=request.getSession();  	      
+	      session.setAttribute("session", admin.getId());
 		  response.sendRedirect("index.jsp");
 		} else {
-      request.setAttribute("error", "INVALID CREDENTIALS");
-      request.getRequestDispatcher("index.jsp").forward(request, response);
-      System.out.println(request.getRequestURI());
-      System.out.println(request.getRequestURI());
-      System.out.println(request.getRequestURI());
-      
+	      request.setAttribute("error", "INVALID CREDENTIALS");
+	      request.getRequestDispatcher("index.jsp").forward(request, response);
+	      System.out.println(request.getRequestURI());
+	      System.out.println(request.getRequestURI());
+	      System.out.println(request.getRequestURI());
 		}
 		
 	}

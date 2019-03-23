@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.acsy.client.Client;
+import com.acsy.history.History;
 
 @Entity
 @Table(name="groups")
@@ -18,13 +19,13 @@ public class Group {
 	
 	@Column(name="name")
 	private String name;
-
+/*
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "groups")
 	private List<Client> clients = new ArrayList<>();
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "groups")
 	private List<History> histories = new ArrayList<>();
-	
+*/	
 	public int getId() {
 		return id;
 	}
@@ -40,7 +41,7 @@ public class Group {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+/*
 	public List<Client> getClients() {
 		return clients;
 	}
@@ -56,5 +57,5 @@ public class Group {
 	public void setHistories(List<History> histories) {
 		this.histories = histories;
 	}
-	
+*/	
 }
