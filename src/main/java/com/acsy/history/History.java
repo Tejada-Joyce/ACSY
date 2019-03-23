@@ -1,4 +1,4 @@
-package model;
+package com.acsy.history;
 import javax.persistence.*;
 
 @Entity

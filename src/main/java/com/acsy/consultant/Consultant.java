@@ -1,8 +1,11 @@
-package model;
+package com.acsy.consultant;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+
+import com.acsy.group.Group;
 
 @Entity
 @Table(name="consultants")

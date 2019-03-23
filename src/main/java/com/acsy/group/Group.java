@@ -1,8 +1,10 @@
-package model;
+package com.acsy.group;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+
+import com.acsy.client.Client;
 
 @Entity
 @Table(name="groups")

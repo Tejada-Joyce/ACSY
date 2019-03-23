@@ -1,4 +1,4 @@
-package model;
+package com.acsy.admin;
 import javax.persistence.*;
 
 @Entity

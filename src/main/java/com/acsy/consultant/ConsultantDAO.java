@@ -1,40 +1,42 @@
-package DAO;
+package com.acsy.consultant;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import model.Client;
-import model.Consultant;
 
+import com.acsy.database.hibernate.HibernateUtils;
+
+import com.acsy.Client;
+import com.acsy.Consultant;
 import java.util.*;
 
-public class ClientDAO {
+public class ConsultantDAO {
 	
 	SessionFactory factory = null;
 	Session session = null;
 	
-	private static ClientDAO single_instance = null;
+	private static ConsultantDAO single_instance = null;
 	
-	private ClientDAO () {
+	private ConsultantDAO () {
 		factory = HibernateUtils.getSessionFactory();
 	}
 	
-	public static ClientDAO getInstance() {
+	public static ConsultantDAO getInstance() {
 		
 		if(single_instance == null) {
-			single_instance = new ClientDAO();
+			single_instance = new ConsultantDAO();
 		}
 		
 		return single_instance;
 	}
 	
-	public List<Client> getAll(){
+	public List<Consultant> getAll(){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Client";
-			List<Client> clients = (List<Client>)session.createQuery(sql).getResultList();
+			String sql = "from model.Consultant";
+			List<Consultant> consultants = (List<Consultant>)session.createQuery(sql).getResultList();
 			session.getTransaction().commit();
-			return clients;
+			return consultants;
 		} catch (Exception e) {
 			e.printStackTrace();
 			//Rollback in case of an error occurred.
@@ -45,14 +47,14 @@ public class ClientDAO {
 		}
 	}
 	
-	public Client get(int id){
+	public Consultant get(int id){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Client where id = " + Integer.toString(id);
-			Client client = (Client)session.createQuery(sql).getSingleResult();
+			String sql = "from model.Consultant where id = " + Integer.toString(id);
+			Consultant consultant = (Consultant)session.createQuery(sql).getSingleResult();
 			session.getTransaction().commit();
-			return client;
+			return consultant;
 		} catch (Exception e) {
 			e.printStackTrace();
 			//Rollback in case of an error occurred.
@@ -63,15 +65,15 @@ public class ClientDAO {
 		}
 	}
 	
-	public Client delete(int id){
+	public Consultant delete(int id){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Client where id = " + Integer.toString(id);
-			Client client = (Client)session.createQuery(sql).getSingleResult();
-			session.remove(client);
+			String sql = "from model.Consultant where id = " + Integer.toString(id);
+			Consultant consultant = (Consultant)session.createQuery(sql).getSingleResult();
+			session.remove(consultant);
 			session.getTransaction().commit();
-			return client;
+			return consultant;
 		} catch (Exception e) {
 			e.printStackTrace();
 			//Rollback in case of an error occurred.
@@ -82,13 +84,13 @@ public class ClientDAO {
 		}
 	}
 	
-	public Client save(Client client){
+	public Consultant save(Consultant consultant){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			session.save(client);
+			session.save(consultant);
 			session.getTransaction().commit();
-			return client;
+			return consultant;
 		} catch (Exception e) {
 			e.printStackTrace();
 			//Rollback in case of an error occurred.
@@ -99,13 +101,13 @@ public class ClientDAO {
 		}
 	}
 	
-	public Client update(Client client){
+	public Consultant update(Consultant consultant){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			session.update(client);
+			session.update(consultant);
 			session.getTransaction().commit();
-			return client;
+			return consultant;
 		} catch (Exception e) {
 			e.printStackTrace();
 			//Rollback in case of an error occurred.

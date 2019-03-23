@@ -1,38 +1,39 @@
-package DAO;
+package com.acsy.history;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import model.Group;
+
+import com.acsy.database.hibernate.HibernateUtils;
 
 import java.util.*;
 
-public class GroupDAO {
+public class HistoryDAO {
 	SessionFactory factory = null;
 	Session session = null;
 	
-	private static GroupDAO single_instance = null;
+	private static HistoryDAO single_instance = null;
 	
-	private GroupDAO () {
+	private HistoryDAO () {
 		factory = HibernateUtils.getSessionFactory();
 	}
 	
-	public static GroupDAO getInstance() {
+	public static HistoryDAO getInstance() {
 		
 		if(single_instance == null) {
-			single_instance = new GroupDAO();
+			single_instance = new HistoryDAO();
 		}
 		
 		return single_instance;
 	}
 	
-	public List<Group> getGroups(){
+	public List<History> getHistories(){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Group";
-			List<Group> groups = (List<Group>)session.createQuery(sql).getResultList();
+			String sql = "from model.History";
+			List<History> histories = (List<History>)session.createQuery(sql).getResultList();
 			session.getTransaction().commit();
-			return groups;
+			return histories;
 		} catch (Exception e) {
 			e.printStackTrace();
 			//Rollback in case of an error occurred.
@@ -43,14 +44,14 @@ public class GroupDAO {
 		}
 	}
 	
-	public Group getGroup(int id){
+	public History getHistory(int id){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Group where id = " + Integer.toString(id);
-			Group group = (Group)session.createQuery(sql).getSingleResult();
+			String sql = "from model.History where id = " + Integer.toString(id);
+			History history = (History)session.createQuery(sql).getSingleResult();
 			session.getTransaction().commit();
-			return group;
+			return history;
 		} catch (Exception e) {
 			e.printStackTrace();
 			//Rollback in case of an error occurred.
@@ -60,4 +61,5 @@ public class GroupDAO {
 			session.close();
 		}
 	}
+
 }

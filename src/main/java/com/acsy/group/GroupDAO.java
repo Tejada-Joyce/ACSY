@@ -1,37 +1,39 @@
-package DAO;
+package com.acsy.group;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import model.History;
+
+import com.acsy.database.hibernate.HibernateUtils;
+
 import java.util.*;
 
-public class HistoryDAO {
+public class GroupDAO {
 	SessionFactory factory = null;
 	Session session = null;
 	
-	private static HistoryDAO single_instance = null;
+	private static GroupDAO single_instance = null;
 	
-	private HistoryDAO () {
+	private GroupDAO () {
 		factory = HibernateUtils.getSessionFactory();
 	}
 	
-	public static HistoryDAO getInstance() {
+	public static GroupDAO getInstance() {
 		
 		if(single_instance == null) {
-			single_instance = new HistoryDAO();
+			single_instance = new GroupDAO();
 		}
 		
 		return single_instance;
 	}
 	
-	public List<History> getHistories(){
+	public List<Group> getGroups(){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.History";
-			List<History> histories = (List<History>)session.createQuery(sql).getResultList();
+			String sql = "from model.Group";
+			List<Group> groups = (List<Group>)session.createQuery(sql).getResultList();
 			session.getTransaction().commit();
-			return histories;
+			return groups;
 		} catch (Exception e) {
 			e.printStackTrace();
 			//Rollback in case of an error occurred.
@@ -42,14 +44,14 @@ public class HistoryDAO {
 		}
 	}
 	
-	public History getHistory(int id){
+	public Group getGroup(int id){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.History where id = " + Integer.toString(id);
-			History history = (History)session.createQuery(sql).getSingleResult();
+			String sql = "from model.Group where id = " + Integer.toString(id);
+			Group group = (Group)session.createQuery(sql).getSingleResult();
 			session.getTransaction().commit();
-			return history;
+			return group;
 		} catch (Exception e) {
 			e.printStackTrace();
 			//Rollback in case of an error occurred.
@@ -59,5 +61,4 @@ public class HistoryDAO {
 			session.close();
 		}
 	}
-
 }
