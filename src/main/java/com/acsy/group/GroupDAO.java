@@ -1,8 +1,9 @@
-package DAO;
+package com.acsy.group;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import model.Group;
+
+import com.acsy.database.hibernate.HibernateUtils;
 
 import java.util.*;
 
