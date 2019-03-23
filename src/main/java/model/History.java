@@ -2,7 +2,7 @@ package model;
 import javax.persistence.*;
 
 @Entity
-@Table(name="history")
+@Table(name="histories")
 
 public class History {
 	
@@ -16,7 +16,19 @@ public class History {
 	
 	@Column(name="rate")
 	private int rate;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private Group group;
+	
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private Client client;
+	
+	@ManyToOne
+	@JoinColumn(name = "id")
+	private Consultant consultant;
+	
 	public int getId() {
 		return id;
 	}
@@ -40,5 +52,29 @@ public class History {
 	public void setRate(int rate) {
 		this.rate = rate;
 	}
-	
+
+	public Group getGroup() {
+		return group;
+	}
+
+	public void setGroup(Group group) {
+		this.group = group;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Consultant getConsultant() {
+		return consultant;
+	}
+
+	public void setConsultant(Consultant consultant) {
+		this.consultant = consultant;
+	}
+		
 }

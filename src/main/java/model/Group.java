@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-@Table(name="group")
+@Table(name="groups")
 
 public class Group {
 	
@@ -17,8 +17,11 @@ public class Group {
 	@Column(name="name")
 	private String name;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "groups")
 	private List<Client> clients = new ArrayList<>();
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "groups")
+	private List<History> histories = new ArrayList<>();
 	
 	public int getId() {
 		return id;
@@ -42,6 +45,14 @@ public class Group {
 
 	public void setClients(List<Client> clients) {
 		this.clients = clients;
+	}
+
+	public List<History> getHistories() {
+		return histories;
+	}
+
+	public void setHistories(List<History> histories) {
+		this.histories = histories;
 	}
 	
 }

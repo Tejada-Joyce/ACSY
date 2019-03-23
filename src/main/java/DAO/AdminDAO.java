@@ -25,7 +25,7 @@ public class AdminDAO {
 		return single_instance;
 	}
 	
-	public List<Admin> getAdmins(){
+	public List<Admin> getAll(){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
@@ -43,7 +43,7 @@ public class AdminDAO {
 		}
 	}
 	
-	public Admin getAdmin(int id){
+	public Admin get(int id){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
@@ -61,4 +61,21 @@ public class AdminDAO {
 		}
 	}
 	
+	public Admin validate(String email, String password){
+		try {
+			session = factory.openSession();
+			session.getTransaction().begin();
+			String sql = "from model.Admin where email = " + email + "and password =" + password;
+			Admin admin = (Admin)session.createQuery(sql).getSingleResult();
+			session.getTransaction().commit();
+			return admin;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//Rollback in case of an error occurred.
+			session.getTransaction().rollback();
+			return null;
+		} finally {
+			session.close();
+		}
+	}
 }
