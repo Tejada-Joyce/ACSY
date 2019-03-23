@@ -1,4 +1,4 @@
-package System;
+package com.acsy.system.authentication;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -47,6 +47,9 @@ public class Login extends HttpServlet {
 		} else {
       request.setAttribute("error", "INVALID CREDENTIALS");
       request.getRequestDispatcher("index.jsp").forward(request, response);
+      System.out.println(request.getRequestURI());
+      System.out.println(request.getRequestURI());
+      System.out.println(request.getRequestURI());
       
 		}
 		
