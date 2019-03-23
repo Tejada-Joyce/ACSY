@@ -1,8 +1,10 @@
-package DAO;
+package com.acsy.history;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import model.History;
+
+import com.acsy.database.hibernate.HibernateUtils;
+
 import java.util.*;
 
 public class HistoryDAO {
