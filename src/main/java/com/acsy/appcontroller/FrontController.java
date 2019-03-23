@@ -12,7 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class FrontController
  */
-@WebServlet(name = "FrontController", urlPatterns = "/*")
+@WebServlet(
+		name = "FrontController", 
+		urlPatterns = {
+				"/admins/*",
+				"/clients/*",
+				"/groups/*",
+				"/consultants/*",
+				"/histories/*"})
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
