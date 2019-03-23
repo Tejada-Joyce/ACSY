@@ -1,9 +1,10 @@
-package DAO;
+package com.acsy.client;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import model.Client;
-import model.Consultant;
+
+import com.acsy.consultant.Consultant;
+import com.acsy.database.hibernate.HibernateUtils;
 
 import java.util.*;
 
