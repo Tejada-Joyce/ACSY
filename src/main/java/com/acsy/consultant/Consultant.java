@@ -1,4 +1,8 @@
 package com.acsy.consultant;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 import com.acsy.group.Group;
@@ -30,6 +34,9 @@ public class Consultant {
 	@OneToOne
 	@JoinColumn(name="id")
 	private Group group;
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "consultants")
+	private List<History> histories = new ArrayList<>();
 
 	public int getId() {
 		return id;
@@ -87,4 +94,12 @@ public class Consultant {
 		this.group = group;
 	}
 
+	public List<History> getHistories() {
+		return histories;
+	}
+
+	public void setHistories(List<History> histories) {
+		this.histories = histories;
+	}
+	
 }
