@@ -1,5 +1,7 @@
-package model;
+package com.acsy.consultant;
 import javax.persistence.*;
+
+import com.acsy.group.Group;
 
 @Entity
 @Table(name="consultants")

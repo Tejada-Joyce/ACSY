@@ -1,8 +1,10 @@
-package DAO;
+package com.acsy.consultant;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import model.Consultant;
+
+import com.acsy.database.hibernate.HibernateUtils;
+
 import java.util.*;
 
 public class ConsultantDAO {
