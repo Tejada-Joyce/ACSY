@@ -12,6 +12,20 @@
       <version>3.1.0</version>
       <scope>provided</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/javax.persistence/persistence-api -->
+		<dependency>
+		    <groupId>javax.persistence</groupId>
+		    <artifactId>persistence-api</artifactId>
+		    <version>1.0.2</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>javax.mail-api</artifactId>
+		    <version>1.6.2</version>
+		</dependency>
+				
+		    
     <!-- https://mvnrepository.com/artifact/org.json/json -->
 	<dependency>
 		<groupId>org.json</groupId>
@@ -30,16 +44,6 @@
       <version>1.2</version>
     </dependency>
 
-    <dependency>
-		<groupId>com.google.appengine</groupId>
-		<artifactId>appengine-api-1.0-sdk</artifactId>
-		<version>1.9.71</version>
-	</dependency>
-	<dependency>
-		<groupId>com.googlecode.objectify</groupId>
-		<artifactId>objectify</artifactId>
-		<version>5.1.22</version>
-	</dependency>
 	<dependency>
 		<groupId>com.google.code.gson</groupId>
 		<artifactId>gson</artifactId>
