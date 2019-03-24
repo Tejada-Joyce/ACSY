@@ -1,4 +1,4 @@
-package com.acsy.system.authentication;
+package com.acsy.system.auth;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
