@@ -64,6 +64,23 @@ public class ConsultantDAO {
 		}
 	}
 	
+	public Consultant delete(Consultant consultant){
+		try {
+			session = factory.openSession();
+			session.getTransaction().begin();
+			session.remove(consultant);
+			session.getTransaction().commit();
+			return consultant;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//Rollback in case of an error occurred.
+			session.getTransaction().rollback();
+			return null;
+		} finally {
+			session.close();
+		}
+	}
+	
 	public Consultant delete(int id){
 		try {
 			session = factory.openSession();
