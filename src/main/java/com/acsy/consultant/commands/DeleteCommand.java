@@ -14,28 +14,31 @@ import com.acsy.system.auth.AuthHelpers;
 
 public class DeleteCommand extends AbstractCommand {
 
-	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if ("POST".equals(request.getMethod()) ){
-			
-			AuthHelpers.authenticate_admin(request, response);
-			
-			// Deleting Consultant
-			int consultant_id = Integer.parseInt(request.getParameter("consultant_id"));
-			
-			ConsultantDAO consultant_dao = ConsultantDAO.getInstance();
-			Consultant consultant = consultant_dao.get(consultant_id);
-			if(consultant_dao.delete(consultant) != null) {
-				//json response soon
-				response.sendRedirect("index.jsp");
-			} else {
-				response.sendRedirect("index.jsp");
-			}
-			
-			
-		} else {
-			response.sendError(400);
-		}
-	}
+  @Override
+  public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    if ("POST".equals(request.getMethod()) ){
+
+      if (AuthHelpers.authenticate_admin(request, response)) {
+        response.sendRedirect("index.jsp");
+        return;
+      }
+
+      // Deleting Consultant
+      int consultant_id = Integer.parseInt(request.getParameter("consultant_id"));
+
+      ConsultantDAO consultant_dao = ConsultantDAO.getInstance();
+      Consultant consultant = consultant_dao.get(consultant_id);
+      if(consultant_dao.delete(consultant) != null) {
+        //json response soon
+        response.sendRedirect("index.jsp");
+      } else {
+        response.sendRedirect("index.jsp");
+      }
+
+
+    } else {
+      response.sendError(400);
+    }
+  }
 
 }

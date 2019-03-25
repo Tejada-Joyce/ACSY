@@ -14,16 +14,19 @@ import com.acsy.system.auth.AuthHelpers;
 
 public class EditCommand extends AbstractCommand {
 
-	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if ("GET".equals(request.getMethod()) ){
-			AuthHelpers.authenticate_admin(request, response);
-			int consultant_id = Integer.parseInt(request.getParameter("consultant_id"));
-			Consultant consultant = ConsultantDAO.getInstance().get(consultant_id); 
-			request.setAttribute("consultant", consultant);
-			request.getRequestDispatcher(ConsultantHelpers.edit_path).forward(request, response);
-		}
-		
-	}
+  @Override
+  public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    if ("GET".equals(request.getMethod()) ){
+      if (AuthHelpers.authenticate_admin(request, response)) {
+        response.sendRedirect("index.jsp");
+        return;
+      }
+      int consultant_id = Integer.parseInt(request.getParameter("consultant_id"));
+      Consultant consultant = ConsultantDAO.getInstance().get(consultant_id); 
+      request.setAttribute("consultant", consultant);
+      request.getRequestDispatcher(ConsultantHelpers.edit_path).forward(request, response);
+    }
+
+  }
 
 }

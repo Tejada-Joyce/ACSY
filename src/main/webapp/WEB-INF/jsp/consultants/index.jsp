@@ -7,15 +7,13 @@
 </head>
 
 <body>
-
-	<nav>
-		<ul>
-			<li><a href="">My Client</a></li>
-		</ul>
-	</nav>
+  <jsp:include page="../layouts/nav.jsp"></jsp:include>
+	
 	<h2>My Clients</h2>
-	<div>
-		<table>
+	
+	<div class="container browser-default">
+		<table id="list" class="display">
+			<thead>
 			<tr>
 				<th><a href="">Full Name</a></th>
 				<th>Phone</th>
@@ -23,6 +21,8 @@
 				<th>Status</th>
 				<th>Group ID</th>
 			</tr>
+			</thead>
+			<tbody>
 			<tr>
 				<td>placeholder</td>
 				<td>placeholder</td>
@@ -58,8 +58,15 @@
 				<td>placeholder</td>
 				<td><a href="">Add History</a></td>
 			</tr>
+			</tbody>
 		</table>
 	</div>
+	
+	<script type="text/javascript">
+		$(document).ready(function() {
+		    $('#list').DataTable();
+		} );
+	</script>
 </body>
 
 </html>

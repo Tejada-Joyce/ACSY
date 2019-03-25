@@ -28,21 +28,19 @@ public class AuthHelpers {
 			} else if (Consultant.class == type) {
 				current_user = ConsultantDAO.getInstance().get(user_id);
 			}
-		} else {
-			response.sendRedirect("index.jsp");
 		}
 		
 		return current_user;
 	}
 	
-	public static void authenticate_admin(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		if (current_user instanceof Admin) return ;
-		response.sendRedirect("index.jsp");
+	public static boolean authenticate_admin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		if (getCurrentUser(request, response) instanceof Admin) return true;
+		return false;
 	}
 	
-	public static void authenticate_consultant(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		if (current_user instanceof Consultant) return;
-		response.sendRedirect("index.jsp");
+	public static boolean authenticate_consultant(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		if (getCurrentUser(request, response) instanceof Consultant) return true;
+		return false;
 	}
 	
 }

@@ -15,14 +15,18 @@ import com.acsy.system.auth.AuthHelpers;
 
 public class IndexCommand extends AbstractCommand{
 
-	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if ("GET".equals(request.getMethod()) ){
-			AuthHelpers.authenticate_admin(request, response);
-			ArrayList<Consultant> consultants = (ArrayList<Consultant>)ConsultantDAO.getInstance().getAll(); 
-			request.setAttribute("consultants", consultants);
-			request.getRequestDispatcher(ConsultantHelpers.edit_path).forward(request, response);
-		}
-	}
+  @Override
+  public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    if ("GET".equals(request.getMethod()) ){
+      if (AuthHelpers.authenticate_admin(request, response)) {
+        response.sendRedirect("index.jsp");
+        return;
+      }
+      ArrayList<Consultant> consultants = (ArrayList<Consultant>)ConsultantDAO.getInstance().getAll(); 
+      request.setAttribute("consultants", consultants);
+      request.getRequestDispatcher(ConsultantHelpers.index_path).forward(request, response);
+      return;
+    }
+  }
 
 }

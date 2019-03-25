@@ -39,6 +39,7 @@ public class Consultant {
 //	@OneToMany(cascade = CascadeType.ALL, mappedBy = "consultants")
 	//private List<History> histories = new ArrayList<>();
 	
+	@Transient
 	private String password_confirm;
 	
 	public Consultant(String first_name, String last_name, String phone,String email, String password, String password_confirm) {

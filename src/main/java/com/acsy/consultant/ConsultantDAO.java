@@ -32,7 +32,7 @@ public class ConsultantDAO {
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Consultant";
+			String sql = "from com.acsy.consultant.Consultant";
 			List<Consultant> consultants = (List<Consultant>)session.createQuery(sql).getResultList();
 			session.getTransaction().commit();
 			return consultants;
@@ -50,7 +50,7 @@ public class ConsultantDAO {
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Consultant where id = " + Integer.toString(id);
+			String sql = "from com.acsy.consultant.Consultant where id = " + Integer.toString(id);
 			Consultant consultant = (Consultant)session.createQuery(sql).getSingleResult();
 			session.getTransaction().commit();
 			return consultant;
@@ -85,7 +85,7 @@ public class ConsultantDAO {
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Consultant where id = " + Integer.toString(id);
+			String sql = "from com.acsy.consultant.Consultant where id = " + Integer.toString(id);
 			Consultant consultant = (Consultant)session.createQuery(sql).getSingleResult();
 			session.remove(consultant);
 			session.getTransaction().commit();

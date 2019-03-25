@@ -1,6 +1,7 @@
 package com.acsy.consultant;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,12 +28,12 @@ public class ConsultantApplicationController {
 
 		this.map = new HashMap<String, Class>();
 		
-		this.map.put("index", IndexCommand.class);
-		this.map.put("new", IndexCommand.class);
-		this.map.put("index", CreateCommand.class);
-		this.map.put("consultants", DeleteCommand.class);
-		this.map.put("clients", EditCommand.class);
-		this.map.put("histories", UpdateCommand.class);
+		this.map.put("INDEX", IndexCommand.class);
+		this.map.put("NEW", IndexCommand.class);
+		this.map.put("CREATE", CreateCommand.class);
+		this.map.put("DELETE", DeleteCommand.class);
+		this.map.put("EDIT", EditCommand.class);
+		this.map.put("UPDATE", UpdateCommand.class);
 		
 		this.request = request;
 		this.response = response;
@@ -104,7 +105,7 @@ public class ConsultantApplicationController {
         String uri = request.getRequestURI();
         if(uri.startsWith("/")) uri = uri.replaceFirst("/", "");
         String[] uriSplitted = uri.split("/");
-        System.out.println(uriSplitted);
+        Arrays.stream(uriSplitted).forEach(System.out::println);
 
         if(uriSplitted.length > 2)
             key = uriSplitted[2].toUpperCase();
