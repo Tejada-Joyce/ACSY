@@ -30,7 +30,7 @@ public class GroupDAO {
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Group";
+			String sql = "from com.acsy.group.Group";
 			List<Group> groups = (List<Group>)session.createQuery(sql).getResultList();
 			session.getTransaction().commit();
 			return groups;
@@ -48,7 +48,7 @@ public class GroupDAO {
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Group where id = " + Integer.toString(id);
+			String sql = "from com.acsy.group.Group where id = " + Integer.toString(id);
 			Group group = (Group)session.createQuery(sql).getSingleResult();
 			session.getTransaction().commit();
 			return group;

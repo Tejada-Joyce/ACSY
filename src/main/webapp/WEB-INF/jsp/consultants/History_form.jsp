@@ -20,7 +20,6 @@
                 <fieldset>                    
                     <label><span>Description:</span><textarea name="description" rows="10" cols="28"></textarea></label>
                     <label><span>Rate</span><select name="rate">
-                    	<option value="0">0</option>
 					    <option value="1">1</option>
 					    <option value="2">2</option>
 					    <option value="3">3</option>

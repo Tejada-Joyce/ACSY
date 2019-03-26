@@ -30,7 +30,7 @@ public class HistoryDAO {
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.History";
+			String sql = "from com.acsy.history.History";
 			List<History> histories = (List<History>)session.createQuery(sql).getResultList();
 			session.getTransaction().commit();
 			return histories;
@@ -48,7 +48,7 @@ public class HistoryDAO {
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.History where id = " + Integer.toString(id);
+			String sql = "from com.acsy.history.History where id = " + Integer.toString(id);
 			History history = (History)session.createQuery(sql).getSingleResult();
 			session.getTransaction().commit();
 			return history;
