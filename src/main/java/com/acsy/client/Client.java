@@ -36,9 +36,9 @@ public class Client {
 	@ManyToOne
 	@JoinColumn(name = "id")
 	private Group group;
-	
-//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "clients")
-//	private List<History> histories = new ArrayList<>();
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "clients")
+	private List<History> histories = new ArrayList<>();
 */
 	public int getId() {
 		return id;

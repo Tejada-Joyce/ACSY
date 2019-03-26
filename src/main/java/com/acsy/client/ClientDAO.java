@@ -32,7 +32,7 @@ public class ClientDAO {
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Client";
+			String sql = "from com.acsy.client.Client";
 			List<Client> clients = (List<Client>)session.createQuery(sql).getResultList();
 			session.getTransaction().commit();
 			return clients;
@@ -50,7 +50,7 @@ public class ClientDAO {
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Client where id = " + Integer.toString(id);
+			String sql = "from com.acsy.client.Client where id = " + Integer.toString(id);
 			Client client = (Client)session.createQuery(sql).getSingleResult();
 			session.getTransaction().commit();
 			return client;
@@ -68,7 +68,7 @@ public class ClientDAO {
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Client where id = " + Integer.toString(id);
+			String sql = "from com.acsy.client.Client where id = " + Integer.toString(id);
 			Client client = (Client)session.createQuery(sql).getSingleResult();
 			session.remove(client);
 			session.getTransaction().commit();
@@ -121,7 +121,7 @@ public class ClientDAO {
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
-			String sql = "from model.Client where group_id = " + Integer.toString(group_id);
+			String sql = "from com.acsy.client.Client where group_id = " + Integer.toString(group_id);
 			List<Client> clients = (List<Client>)session.createQuery(sql).getResultList();
 			session.getTransaction().commit();
 			return clients;

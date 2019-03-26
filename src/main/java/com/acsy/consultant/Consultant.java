@@ -31,11 +31,12 @@ public class Consultant {
 	
 	@Column(name="password")
 	private String password;
-	
+/*	
 	@OneToOne
 	@JoinColumn(name="id")
 	private Group group;
-	
+
+*/
 //	@OneToMany(cascade = CascadeType.ALL, mappedBy = "consultants")
 	//private List<History> histories = new ArrayList<>();
 	
@@ -52,7 +53,10 @@ public class Consultant {
 		this.password = password;
 		this.password_confirm = password_confirm;
 	}
-
+/*
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "consultants")
+	private List<History> histories = new ArrayList<>();
+*/
 	public int getId() {
 		return id;
 	}
@@ -100,7 +104,7 @@ public class Consultant {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+/*	
 	public Group getGroup() {
 		return group;
 	}
@@ -108,7 +112,7 @@ public class Consultant {
 	public void setGroup(Group group) {
 		this.group = group;
 	}
-/*
+
 	public List<History> getHistories() {
 		return histories;
 	}
