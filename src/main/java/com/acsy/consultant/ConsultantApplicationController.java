@@ -29,7 +29,7 @@ public class ConsultantApplicationController {
 		this.map = new HashMap<String, Class>();
 		
 		this.map.put("INDEX", IndexCommand.class);
-		this.map.put("NEW", IndexCommand.class);
+		this.map.put("NEW", NewCommand.class);
 		this.map.put("CREATE", CreateCommand.class);
 		this.map.put("DELETE", DeleteCommand.class);
 		this.map.put("EDIT", EditCommand.class);
@@ -117,6 +117,6 @@ public class ConsultantApplicationController {
         if(uri.startsWith("/")) uri = uri.replaceFirst("/", "");
         String[] uriSplitted = uri.split("/");
 
-        return uriSplitted.length == 3 && map.containsKey(key);
+        return (uriSplitted.length == 3 || uriSplitted.length == 4) && map.containsKey(key);
     }
 }

@@ -17,11 +17,13 @@ public class NewCommand extends AbstractCommand{
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     if ("GET".equals(request.getMethod()) ){
-      if (AuthHelpers.authenticate_admin(request, response)) {
+      if (!AuthHelpers.authenticate_admin(request, response)) {
         response.sendRedirect("index.jsp");
         return;
       }
       AuthHelpers.authenticate_admin(request, response);
+      request.setAttribute("operation", "new");
+      request.setAttribute("action", "/consultants/create");
       request.getRequestDispatcher(ConsultantHelpers.new_path).forward(request, response);
     }
 

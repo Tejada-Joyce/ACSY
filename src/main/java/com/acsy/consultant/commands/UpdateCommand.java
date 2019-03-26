@@ -17,7 +17,7 @@ public class UpdateCommand extends AbstractCommand{
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     if ("POST".equals(request.getMethod()) ){
-      if (AuthHelpers.authenticate_admin(request, response)) {
+      if (!AuthHelpers.authenticate_admin(request, response)) {
         response.sendRedirect("index.jsp");
         return;
       }
@@ -38,11 +38,13 @@ public class UpdateCommand extends AbstractCommand{
       if(ConsultantDAO.getInstance().update(consultant) != null) {
         // send json with response
         // redirecting for now
-        response.sendRedirect("index.jsp");
+        request.setAttribute("notice", "Updated succesfully.");
+        response.sendRedirect("/ACSY/consultants/index");
       } else {
         // send json with response
         // redirecting for now
-        response.sendRedirect("index.jsp");
+        request.setAttribute("error", "Could not update consultant, try again.");
+        request.getRequestDispatcher(ConsultantHelpers.index_path).forward(request, response);
       }
 
 

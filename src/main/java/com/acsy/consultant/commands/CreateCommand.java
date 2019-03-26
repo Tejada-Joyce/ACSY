@@ -18,7 +18,7 @@ public class CreateCommand extends AbstractCommand{
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     if ("POST".equals(request.getMethod()) ){
-      if (AuthHelpers.authenticate_admin(request, response)) {
+      if (!AuthHelpers.authenticate_admin(request, response)) {
         response.sendRedirect("index.jsp");
         return;
       }
@@ -38,10 +38,13 @@ public class CreateCommand extends AbstractCommand{
         consultant_dao.save(consultant);
         // send json with response
         // redirecting for now
-        response.sendRedirect("index.jsp");
+        request.setAttribute("notice", "Created succesfully.");
+        //request.getRequestDispatcher(ConsultantHelpers.index_path).forward(request, response);
+        response.sendRedirect("index");
 
       } else {
-        response.sendRedirect("index.jsp");
+        request.setAttribute("error", "Could not create consultant.");
+        request.getRequestDispatcher(ConsultantHelpers.index_path).forward(request, response);
       }
 
 

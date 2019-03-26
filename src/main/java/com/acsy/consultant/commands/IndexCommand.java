@@ -18,8 +18,8 @@ public class IndexCommand extends AbstractCommand{
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     if ("GET".equals(request.getMethod()) ){
-      if (AuthHelpers.authenticate_admin(request, response)) {
-        response.sendRedirect("index.jsp");
+      if (!AuthHelpers.authenticate_admin(request, response)) {
+        response.sendRedirect("/index.jsp");
         return;
       }
       ArrayList<Consultant> consultants = (ArrayList<Consultant>)ConsultantDAO.getInstance().getAll(); 

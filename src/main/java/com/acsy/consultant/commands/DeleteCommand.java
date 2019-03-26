@@ -16,23 +16,26 @@ public class DeleteCommand extends AbstractCommand {
 
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    if ("POST".equals(request.getMethod()) ){
+    if ("GET".equals(request.getMethod()) ){
 
-      if (AuthHelpers.authenticate_admin(request, response)) {
+      if (!AuthHelpers.authenticate_admin(request, response)) {
         response.sendRedirect("index.jsp");
         return;
       }
 
       // Deleting Consultant
-      int consultant_id = Integer.parseInt(request.getParameter("consultant_id"));
+      String[] splitted = request.getRequestURI().split("/");
+      String consultant_id = splitted[splitted.length-1];
+      int id = Integer.parseInt(consultant_id);
 
       ConsultantDAO consultant_dao = ConsultantDAO.getInstance();
-      Consultant consultant = consultant_dao.get(consultant_id);
+      Consultant consultant = consultant_dao.get(id);
       if(consultant_dao.delete(consultant) != null) {
         //json response soon
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("consultants/index");
       } else {
-        response.sendRedirect("index.jsp");
+        request.setAttribute("error", "Could not delete consultant, try again.'4");
+        request.getRequestDispatcher(ConsultantHelpers.index_path).forward(request, response);
       }
 
 

@@ -20,13 +20,13 @@ public class AuthHelpers {
 		HttpSession session = request.getSession();
 		Integer user_id = (Integer) session.getAttribute("user_id");
 		Boolean active = (Boolean) session.getAttribute("active");
-		Class type = (Class) session.getAttribute("type");
+		String type = (String)session.getAttribute("type");
 		
 		if(user_id != null && active != null && type != null) {
-			if (Admin.class == type) {
-				current_user = AdminDAO.getInstance().get(user_id);
-			} else if (Consultant.class == type) {
-				current_user = ConsultantDAO.getInstance().get(user_id);
+			if ("admin".equals(type)) {
+				current_user = (Admin)AdminDAO.getInstance().get(user_id);
+			} else if ("consultant".equals(type)) {
+				current_user = (Consultant)ConsultantDAO.getInstance().get(user_id);
 			}
 		}
 		
@@ -35,6 +35,7 @@ public class AuthHelpers {
 	
 	public static boolean authenticate_admin(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		if (getCurrentUser(request, response) instanceof Admin) return true;
+		System.out.println(getCurrentUser(request, response));
 		return false;
 	}
 	

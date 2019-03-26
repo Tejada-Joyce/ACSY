@@ -4,7 +4,7 @@
 <%@ page import="com.acsy.admin.Admin" %>
 <%@ page import="com.acsy.consultant.Consultant" %>  
     
-<% if(AuthHelpers.getCurrentUser(request, response) instanceof Admin) { %>
+<% if(AuthHelpers.authenticate_admin(request, response)) { %>
 <nav>
   <div class="nav-wrapper">
     <a href="#" class="brand-logo">ACSY</a>
@@ -16,7 +16,7 @@
     </ul>
   </div>
 </nav>
-<% } else if(AuthHelpers.getCurrentUser(request, response) instanceof Consultant) { %>
+<% } else if(AuthHelpers.authenticate_consultant(request, response)) { %>
 <nav>
   <div class="nav-wrapper">
     <a href="#" class="brand-logo">ACSY</a>

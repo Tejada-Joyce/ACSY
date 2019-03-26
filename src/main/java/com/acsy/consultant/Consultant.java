@@ -42,6 +42,8 @@ public class Consultant {
 	@Transient
 	private String password_confirm;
 	
+	public Consultant() {}
+	
 	public Consultant(String first_name, String last_name, String phone,String email, String password, String password_confirm) {
 		this.first_name = first_name;
 		this.last_name = last_name;
