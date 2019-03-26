@@ -14,12 +14,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(
 		name = "FrontController", 
-		urlPatterns = {
-				"/admins/*",
-				"/clients/*",
-				"/groups/*",
-				"/consultants/*",
-				"/histories/*"})
+		urlPatterns = "/servlets")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

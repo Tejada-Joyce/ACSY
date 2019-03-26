@@ -459,4 +459,6 @@ table.dataTable td {
   }
 }
 
-
+label select{
+	display: inline;
+}

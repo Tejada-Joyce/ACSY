@@ -3,10 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<jsp:include page="../layouts/header.jsp"></jsp:include>
 <title>Insert title here</title>
 </head>
 <body>
-
+	<jsp:include page="../layouts/nav.jsp"></jsp:include>
+	  <h2 class="center">Edit Consultant</h2>
+	<jsp:include page="./form.jsp"></jsp:include>
 </body>
 </html>

@@ -1,4 +1,4 @@
-package com.acsy.system.authentication;
+package com.acsy.system.auth;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -46,8 +46,10 @@ public class Login extends HttpServlet {
 		Admin admin = ad.validate(email, password);
 		if (admin != null) {
 	      HttpSession session=request.getSession();  	      
-	      session.setAttribute("session", admin.getId());
-		  response.sendRedirect("index.jsp");
+	      session.setAttribute("user_id", admin.getId());
+	      session.setAttribute("type", "admin");
+	      session.setAttribute("active", true);
+	      request.getRequestDispatcher("index.jsp").forward(request, response);
 		} else {
 	      request.setAttribute("error", "INVALID CREDENTIALS");
 	      request.getRequestDispatcher("index.jsp").forward(request, response);

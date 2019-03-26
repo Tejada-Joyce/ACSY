@@ -35,7 +35,25 @@ public class Consultant {
 	@OneToOne
 	@JoinColumn(name="id")
 	private Group group;
+
+*/
+//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "consultants")
+	//private List<History> histories = new ArrayList<>();
 	
+	@Transient
+	private String password_confirm;
+	
+	public Consultant() {}
+	
+	public Consultant(String first_name, String last_name, String phone,String email, String password, String password_confirm) {
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.phone = phone;
+		this.email = email;
+		this.password = password;
+		this.password_confirm = password_confirm;
+	}
+/*
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "consultants")
 	private List<History> histories = new ArrayList<>();
 */
@@ -47,19 +65,19 @@ public class Consultant {
 		this.id = id;
 	}
 
-	public String getFirst_name() {
+	public String getFirstName() {
 		return first_name;
 	}
 
-	public void setFirst_name(String first_name) {
+	public void setFirstName(String first_name) {
 		this.first_name = first_name;
 	}
 
-	public String getLast_name() {
+	public String getLastName() {
 		return last_name;
 	}
 
-	public void setLast_name(String last_name) {
+	public void setLastName(String last_name) {
 		this.last_name = last_name;
 	}
 
@@ -102,5 +120,13 @@ public class Consultant {
 	public void setHistories(List<History> histories) {
 		this.histories = histories;
 	}
-*/	
+*/
+
+	public String getPasswordConfirm() {
+		return password_confirm;
+	}
+
+	public void setPasswordConfirm(String password_confirm) {
+		this.password_confirm = password_confirm;
+	}	
 }
