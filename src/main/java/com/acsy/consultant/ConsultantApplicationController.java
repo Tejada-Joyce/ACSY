@@ -84,7 +84,7 @@ public class ConsultantApplicationController {
          }
 
 
-         //If an error ocorred, response 500.
+         //If an error occurred, response 500.
          if(error){
               try {
                   response.sendError(500);

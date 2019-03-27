@@ -3,7 +3,6 @@ package com.acsy.client;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import com.acsy.consultant.Consultant;
 import com.acsy.database.hibernate.HibernateUtils;
 
 import java.util.*;
@@ -52,6 +51,23 @@ public class ClientDAO {
 			session.getTransaction().begin();
 			String sql = "from com.acsy.client.Client where id = " + Integer.toString(id);
 			Client client = (Client)session.createQuery(sql).getSingleResult();
+			session.getTransaction().commit();
+			return client;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//Rollback in case of an error occurred.
+			session.getTransaction().rollback();
+			return null;
+		} finally {
+			session.close();
+		}
+	}
+	
+	public Client delete(Client client){
+		try {
+			session = factory.openSession();
+			session.getTransaction().begin();
+			session.remove(client);
 			session.getTransaction().commit();
 			return client;
 		} catch (Exception e) {
