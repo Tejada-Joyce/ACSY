@@ -10,6 +10,8 @@ import javax.servlet.http.HttpSession;
 
 import com.acsy.admin.Admin;
 import com.acsy.admin.AdminDAO;
+import com.acsy.consultant.Consultant;
+import com.acsy.consultant.ConsultantDAO;
 
 
 /**
@@ -44,10 +46,18 @@ public class Login extends HttpServlet {
 		String password = request.getParameter("password");
 		AdminDAO ad = AdminDAO.getInstance();
 		Admin admin = ad.validate(email, password);
+		ConsultantDAO cd = ConsultantDAO.getInstance();
+		Consultant cons = cd.validate(email, password);
 		if (admin != null) {
 	      HttpSession session=request.getSession();  	      
 	      session.setAttribute("user_id", admin.getId());
 	      session.setAttribute("type", "admin");
+	      session.setAttribute("active", true);
+	      request.getRequestDispatcher("index.jsp").forward(request, response);
+		} else if (cons != null) {			 
+	      HttpSession session=request.getSession();  	      
+	      session.setAttribute("user_id", cons.getId());
+	      session.setAttribute("type", "cons");
 	      session.setAttribute("active", true);
 	      request.getRequestDispatcher("index.jsp").forward(request, response);
 		} else {
@@ -56,6 +66,7 @@ public class Login extends HttpServlet {
 	      System.out.println(request.getRequestURI());
 	      System.out.println(request.getRequestURI());
 	      System.out.println(request.getRequestURI());
+	      
 		}
 		
 	}

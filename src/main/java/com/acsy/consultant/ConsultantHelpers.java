@@ -8,7 +8,7 @@ public class ConsultantHelpers {
 	public static final String edit_path = "/WEB-INF/jsp/consultants/edit.jsp";
 	public static final String show_path = "/WEB-INF/jsp/consultants/show.jsp";
 	
-	// Verifies if password and password confirm matchs
+	// Verifies if password and password confirm match
 	public static boolean is_valid(Consultant consultant){
 		if(
 			consultant.getPassword().length() > 5 &&

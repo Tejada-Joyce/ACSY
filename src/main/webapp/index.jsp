@@ -27,7 +27,7 @@
       </ul>
     </div>
   </nav>
-  <h1><%= session.getAttribute("session") != null ? session.getAttribute("session"):"Nothing" %></h1>
+  <h1><%= session.getAttribute("type") != null ? session.getAttribute("type"):"Nothing" %></h1>
   <div class="container">
     <h2>Sign In</h2>
 		<form action="Login" method="post">

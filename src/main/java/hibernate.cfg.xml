@@ -8,9 +8,9 @@
 	<session-factory>
 		<!-- Database Connection Settings -->
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-		<property name="connection.url">jdbc:mysql://localhost:3306/cit360</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/cit361</property>
 		<property name="connection.username">root</property>
-		<property name="connection.password">JJTA1995</property>
+		<property name="connection.password"></property>
 		
 		<!-- JDBC Connection Pool (use the built in) -->
 		<property name="connection.pool_size">1</property>
