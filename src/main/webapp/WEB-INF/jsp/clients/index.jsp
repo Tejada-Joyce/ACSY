@@ -37,7 +37,7 @@
 			List<Client> clients = (ArrayList<Client>)request.getAttribute("clients");
 			if (clients != null){
 			for(Client cl : clients){
-      %>
+      		%>
 			<tr>
 				<td><%= cl.getFirstName() + " " + cl.getLastName() %></td>
 				<td><%= cl.getPhone() %></td>

@@ -41,6 +41,7 @@ public class AuthHelpers {
 	
 	public static boolean authenticate_consultant(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		if (getCurrentUser(request, response) instanceof Consultant) return true;
+		System.out.println(getCurrentUser(request, response));
 		return false;
 	}
 	

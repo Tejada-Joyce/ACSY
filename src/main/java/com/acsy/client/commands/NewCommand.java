@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.client.ClientHelpers;
+import com.acsy.group.GroupDAO;
 import com.acsy.system.auth.AuthHelpers;
 
 public class NewCommand extends AbstractCommand{
@@ -22,6 +23,7 @@ public class NewCommand extends AbstractCommand{
       AuthHelpers.authenticate_admin(request, response);
       request.setAttribute("operation", "new");
       request.setAttribute("action", "/clients/create");
+      request.setAttribute("groups", GroupDAO.getInstance().getAll());
       request.getRequestDispatcher(ClientHelpers.new_path).forward(request, response);
     }
 

@@ -6,6 +6,7 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/materialize.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/assets/css/datatables.css">
 
+<script src="${pageContext.request.contextPath}/assets/js/materialize.js"></script>
 <script src="${pageContext.request.contextPath}/assets/js/jquery-3.3.1.js"></script>	
 <script src="${pageContext.request.contextPath}/assets/js/datatables.js"></script>	
 <script>

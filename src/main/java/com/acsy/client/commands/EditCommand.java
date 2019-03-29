@@ -10,6 +10,7 @@ import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.client.Client;
 import com.acsy.client.ClientDAO;
 import com.acsy.client.ClientHelpers;
+import com.acsy.group.GroupDAO;
 import com.acsy.system.auth.AuthHelpers;
 
 public class EditCommand extends AbstractCommand {
@@ -28,6 +29,7 @@ public class EditCommand extends AbstractCommand {
       request.setAttribute("client", client);
       request.setAttribute("operation", "edit");
       request.setAttribute("action", "/clients/update");
+      request.setAttribute("groups", GroupDAO.getInstance().getAll());
       request.getRequestDispatcher(ClientHelpers.edit_path).forward(request, response);
     }
     else {

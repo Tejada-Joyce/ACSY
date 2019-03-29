@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<%@ page import="com.acsy.client.Client" %>  
-
+<%@ page import="com.acsy.client.Client" %>
+<%@ page import="com.acsy.group.Group" %>  
+<%@ page import="java.util.List" %>  
+<%@ page import="java.util.ArrayList" %>  
 <div class="container">
   <% 
   Client client = (Client)request.getAttribute("client"); 
@@ -44,7 +46,7 @@
       type="tel" 
       class="validate" 
       name="phone" 
-      pattern="[0-9]{10,20}"
+      
       value="<%= client != null ? client.getPhone() : "" %>">
     <label for="phone">Phone</label>
     </div>
@@ -54,21 +56,27 @@
     value="<%= client != null ? client.getEmail() : "" %>" name="email" required>
     <label for="first_name">Email</label>
     </div>
-  <%--  
-    <% if ("new".equals((String)request.getAttribute("operation"))){ %>
     <div>
-    <input placeholder="password" id="password" type="text" class="validate" name="password" required>
-    <label for="password">Password</label>
-    </div>
-    
-    <div>
-    <input placeholder="Password" id="password_confirm" type="text" class="validate" name="password_confirm" required>
-    <label for="first_name">Confirm Password</label>
-    </div>
-    <% } else { %>
-      <input type="hidden" name="consultant_id" value="<%= client != null ? client.getId() : "" %>">
-    <% } %>
-    </fieldset> --%> 
+	    <div class="input-field">
+		    <select name="group_id" class = "browser-default" id="select-group">
+		      <option value="<%= client != null ? client.getGroup().getId() : "" %>" disabled selected><%= client != null ? client.getGroup().getName() : "Choose your option" %></option>
+		      <% 
+				List<Group> groups = (ArrayList<Group>)request.getAttribute("groups");
+				if (groups != null){
+				for(Group gr : groups){
+		      %>
+				<option value= "<%=gr.getId() %>"><%= gr.getName()%></option>
+				<% }} %>
+		     
+		    </select>
+		    <label>Group</label>
+	  	</div>
+	</div>
     <input type="submit" value="<%= "new".equals(operation) ? "Add Client":"Update Client" %>" class="submitBt">
 	</form>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#select-group').formSelect();
+  });
+</script>

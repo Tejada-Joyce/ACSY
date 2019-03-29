@@ -26,7 +26,7 @@ public class GroupDAO {
 		return single_instance;
 	}
 	
-	public List<Group> getGroups(){
+	public List<Group> getAll(){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
@@ -44,7 +44,7 @@ public class GroupDAO {
 		}
 	}
 	
-	public Group getGroup(int id){
+	public Group get(int id){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();

@@ -23,7 +23,7 @@
 					<option value="5">5</option>
 			</select></label>
 		</fieldset>
-		<input type="submit" value="Add Client" class="submitBt">
+		<input type="submit" value="Add History" class="submitBt">
 		<%--input hidden tag with the user's id--%>
 
 	</form>

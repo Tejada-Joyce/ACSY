@@ -53,13 +53,13 @@ public class Login extends HttpServlet {
 	      session.setAttribute("user_id", admin.getId());
 	      session.setAttribute("type", "admin");
 	      session.setAttribute("active", true);
-	      request.getRequestDispatcher("index.jsp").forward(request, response);
+	      response.sendRedirect("consultants/index");
 		} else if (cons != null) {			 
 	      HttpSession session=request.getSession();  	      
 	      session.setAttribute("user_id", cons.getId());
-	      session.setAttribute("type", "cons");
+	      session.setAttribute("type", "consultant");
 	      session.setAttribute("active", true);
-	      request.getRequestDispatcher("index.jsp").forward(request, response);
+	      response.sendRedirect("clients/index");
 		} else {
 	      request.setAttribute("error", "INVALID CREDENTIALS");
 	      request.getRequestDispatcher("index.jsp").forward(request, response);

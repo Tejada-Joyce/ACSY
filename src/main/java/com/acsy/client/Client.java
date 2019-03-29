@@ -32,14 +32,17 @@ public class Client {
 	
 	@Column(name="status")
 	private int status;
-/*	
+	
 	@ManyToOne
-	@JoinColumn(name = "id")
 	private Group group;
+	
+	/*	
+	@Column(name="group_id")
+	private int group_id;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "clients")
 	private List<History> histories = new ArrayList<>();
-*/
+	 */
 	public Client() {}
 	
 	public Client(String first_name, String last_name, String phone,String email) {
@@ -47,6 +50,14 @@ public class Client {
 		this.last_name = last_name;
 		this.phone = phone;
 		this.email = email;
+	}
+	
+	public Client(String first_name, String last_name, String phone,String email, Group group) {
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.phone = phone;
+		this.email = email;
+		this.group = group;
 	}
 	
 	public int getId() {
@@ -96,7 +107,7 @@ public class Client {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-/*
+
 	public Group getGroup() {
 		return group;
 	}
@@ -104,7 +115,7 @@ public class Client {
 	public void setGroup(Group group) {
 		this.group = group;
 	}
-
+	/*
 	public List<History> getHistories() {
 		return histories;
 	}
@@ -112,5 +123,14 @@ public class Client {
 	public void setHistories(List<History> histories) {
 		this.histories = histories;
 	}
-*/			
+
+
+	public int getGroupId() {
+		return group_id;
+	}
+
+	public void setGroupId(int group_id) {
+		this.group_id = group_id;
+	}	
+*/		
 }

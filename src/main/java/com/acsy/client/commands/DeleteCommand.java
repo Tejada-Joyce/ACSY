@@ -34,12 +34,20 @@ public class DeleteCommand extends AbstractCommand {
         //json response soon
         response.sendRedirect("clients/index");
       } else {
+    	  System.out.println(request.getContextPath()+ClientHelpers.index_path);
+    	  System.out.println(request.getContextPath()+ClientHelpers.index_path);
+    	  System.out.println(request.getContextPath()+ClientHelpers.index_path);
+    	  System.out.println(request.getContextPath()+ClientHelpers.index_path);
         request.setAttribute("error", "Could not delete consultant, try again.'4");
-        request.getRequestDispatcher(ClientHelpers.index_path).forward(request, response);
+        request.getRequestDispatcher(request.getContextPath()+ClientHelpers.index_path).forward(request, response);
       }
 
 
     } else {
+      System.out.println("Your request could not be processed.");
+      System.out.println("Your request could not be processed.");
+      System.out.println("Your request could not be processed.");
+      System.out.println("Your request could not be processed.");
       response.sendError(400);
     }
   }

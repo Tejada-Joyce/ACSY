@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.client.Client;
 import com.acsy.client.ClientDAO;
+import com.acsy.group.Group;
+import com.acsy.group.GroupDAO;
 import com.acsy.system.auth.AuthHelpers;
 
 public class CreateCommand extends AbstractCommand{
@@ -25,10 +27,13 @@ public class CreateCommand extends AbstractCommand{
 		String first_name = request.getParameter("first_name");
 		String last_name = request.getParameter("last_name");
 		String phone = request.getParameter("phone");
-		String email = request.getParameter("email");
-		  
-		Client client = new Client(first_name, last_name, phone, email);		
-		  
+		String email = request.getParameter("email");				
+		int group_id = Integer.parseInt(request.getParameter("group_id"));
+		
+		Group group = GroupDAO.getInstance().get(group_id);
+		
+		Client client = new Client(first_name, last_name, phone, email, group);		
+ 
 		ClientDAO client_dao = ClientDAO.getInstance();
 		client_dao.save(client);
 		// send json with response
