@@ -19,10 +19,13 @@ public class Group {
 	
 	@Column(name="name")
 	private String name;
-/*
+	
+	@Column(name="status")
+	private boolean status;
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "groups")
 	private List<Client> clients = new ArrayList<>();
-	
+/*	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "groups")
 	private List<History> histories = new ArrayList<>();
 */	
@@ -41,7 +44,15 @@ public class Group {
 	public void setName(String name) {
 		this.name = name;
 	}
-/*
+	
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	public List<Client> getClients() {
 		return clients;
 	}
@@ -49,7 +60,7 @@ public class Group {
 	public void setClients(List<Client> clients) {
 		this.clients = clients;
 	}
-
+/*
 	public List<History> getHistories() {
 		return histories;
 	}

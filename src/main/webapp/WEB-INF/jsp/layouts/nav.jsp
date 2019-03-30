@@ -6,13 +6,13 @@
     
 <% if(AuthHelpers.authenticate_admin(request, response)) { %>
 <nav>
-  <div class="nav-wrapper">
-    <a href="#" class="brand-logo">ACSY</a>
+  <div class="nav-wrapper light-blue">
+    <a href="${pageContext.request.contextPath}" class="brand-logo">ACSY</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="#">Clients</a></li>
-      <li><a href="#">Consultants</a></li>
+      <li><a href="${pageContext.request.contextPath}/clients/index">Clients</a></li>
+      <li><a href="${pageContext.request.contextPath}/consultants/index">Consultants</a></li>
       <li><a href="#">Groups</a></li>
-      <li><a href="#">Logout</a></li>
+      <li><a href="${pageContext.request.contextPath}/auth/Logout">Logout</a></li>
     </ul>
   </div>
 </nav>
@@ -22,7 +22,7 @@
     <a href="#" class="brand-logo">ACSY</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="#">My Clients</a></li>
-      <li><a href="#">Logout</a></li>
+      <li><a href="${pageContext.request.contextPath}/auth/Logout">Logout</a></li>
     </ul>
   </div>
 </nav>  

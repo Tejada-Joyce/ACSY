@@ -1,6 +1,7 @@
-package com.acsy.appcontroller;
+package com.acsy.history;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,28 +11,26 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jboss.logging.Logger;
 
-import com.acsy.client.ClientCommand;
+import com.acsy.appcontroller.AbstractCommand;
+import com.acsy.client.commands.*;
 
-
-public class ApplicationController {
-	
-	private static Logger logger = Logger.getLogger(ApplicationController.class);
+public class HistoryApplicationController {
+	private static Logger logger = Logger.getLogger(HistoryApplicationController.class);
     private final String PAGE_ERROR = "/pageError.jsp";
     private HttpServletRequest request;
     private HttpServletResponse response;
     private Map<String, Class> map;
     private String key;
     
-    public ApplicationController(HttpServletRequest request, HttpServletResponse  response){
+    public HistoryApplicationController(HttpServletRequest request, HttpServletResponse  response){
 
-		//On our example, only PDF and JPG is acepted to download.
 		this.map = new HashMap<String, Class>();
-		//this.map.put("admins", PdfCommand.class);
-		//this.map.put("consultants", PdfCommand.class);
-		this.map.put("clients", ClientCommand.class);
-		//this.map.put("groups", PdfCommand.class);
-		//this.map.put("histories", PdfCommand.class);
-		//this.map.put("auth", PdfCommand.class);
+		
+		this.map.put("INDEX", IndexCommand.class);
+		this.map.put("CREATE", CreateCommand.class);
+		this.map.put("DELETE", DeleteCommand.class);
+		this.map.put("EDIT", EditCommand.class);
+		this.map.put("UPDATE", UpdateCommand.class);
 		
 		this.request = request;
 		this.response = response;
@@ -43,15 +42,15 @@ public class ApplicationController {
         //Processes the URI and creates the key using URI.
         this.processUri();
 
-         //Validates if the request is valid.
-         if (!validate()) {
-             try {
-                 response.sendError(400);
-             } catch (IOException e1) {
-                 logger.error(e1.getMessage());
-             }
+        //Validates if the request is valid.
+        if (!validate()) {
+        	try {
+                response.sendError(400);
+            } catch (IOException e1) {
+            	logger.error(e1.getMessage());
+            }
 
-             return;
+            return;
          }
 
         //Get the correspondent command.
@@ -61,10 +60,8 @@ public class ApplicationController {
 
         try {
 
-             AbstractCommand command = (AbstractCommand) 
-             commandClass.newInstance();
+             AbstractCommand command = (AbstractCommand) commandClass.newInstance();
 
-             //Executes the command.
              command.execute(request,response);
 
          } catch (InstantiationException e) {
@@ -84,7 +81,7 @@ public class ApplicationController {
          }
 
 
-         //If an error ocorred, response 500.
+         //If an error occurred, response 500.
          if(error){
               try {
                   response.sendError(500);
@@ -105,6 +102,7 @@ public class ApplicationController {
         String uri = request.getRequestURI();
         if(uri.startsWith("/")) uri = uri.replaceFirst("/", "");
         String[] uriSplitted = uri.split("/");
+        Arrays.stream(uriSplitted).forEach(System.out::println);
 
         if(uriSplitted.length > 2)
             key = uriSplitted[2].toUpperCase();
@@ -116,7 +114,6 @@ public class ApplicationController {
         if(uri.startsWith("/")) uri = uri.replaceFirst("/", "");
         String[] uriSplitted = uri.split("/");
 
-        return uriSplitted.length == 3 && map.containsKey(key);
+        return (uriSplitted.length == 3 || uriSplitted.length == 4) && map.containsKey(key);
     }
-
 }

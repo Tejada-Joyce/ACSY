@@ -12,11 +12,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.jboss.logging.Logger;
 
 import com.acsy.appcontroller.AbstractCommand;
-import com.acsy.appcontroller.ApplicationController;
 import com.acsy.client.commands.*;
 
 public class ClientApplicationController {
-	private static Logger logger = Logger.getLogger(ApplicationController.class);
+	private static Logger logger = Logger.getLogger(ClientApplicationController.class);
     private final String PAGE_ERROR = "/pageError.jsp";
     private HttpServletRequest request;
     private HttpServletResponse response;

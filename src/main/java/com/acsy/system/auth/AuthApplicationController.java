@@ -1,4 +1,4 @@
-package com.acsy.consultant;
+package com.acsy.system.auth;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -12,27 +12,24 @@ import javax.servlet.http.HttpServletResponse;
 import org.jboss.logging.Logger;
 
 import com.acsy.appcontroller.AbstractCommand;
-import com.acsy.consultant.commands.*;
+import com.acsy.system.auth.commands.*;
 
-public class ConsultantApplicationController {
-	private static Logger logger = Logger.getLogger(ConsultantApplicationController.class);
+
+public class AuthApplicationController {
+	private static Logger logger = Logger.getLogger(AuthApplicationController.class);
     private final String PAGE_ERROR = "/pageError.jsp";
     private HttpServletRequest request;
     private HttpServletResponse response;
     private Map<String, Class> map;
     private String key;
     
-    public ConsultantApplicationController(HttpServletRequest request, HttpServletResponse  response){
+    public AuthApplicationController(HttpServletRequest request, HttpServletResponse  response){
 
 		this.map = new HashMap<String, Class>();
 		
-		this.map.put("INDEX", IndexCommand.class);
-		this.map.put("NEW", NewCommand.class);
-		this.map.put("CREATE", CreateCommand.class);
-		this.map.put("DELETE", DeleteCommand.class);
-		this.map.put("EDIT", EditCommand.class);
-		this.map.put("UPDATE", UpdateCommand.class);
-		
+		this.map.put("LOGIN", LoginCommand.class);
+		this.map.put("LOGOUT", LogoutCommand.class);
+
 		this.request = request;
 		this.response = response;
 		
@@ -81,7 +78,6 @@ public class ConsultantApplicationController {
              error = true;
          }
 
-
          //If an error occurred, response 500.
          if(error){
               try {
@@ -92,8 +88,6 @@ public class ConsultantApplicationController {
                   return;
               }
          }
-
-
      }
     
     /*private methods*/

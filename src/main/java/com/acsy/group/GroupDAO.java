@@ -61,4 +61,22 @@ public class GroupDAO {
 			session.close();
 		}
 	}
+	
+	public List<Group> getAllAvailable(){
+		try {
+			session = factory.openSession();
+			session.getTransaction().begin();
+			String sql = "from com.acsy.group.Group where status = 1";
+			List<Group> groups = (List<Group>)session.createQuery(sql).getSingleResult();
+			session.getTransaction().commit();
+			return groups;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//Rollback in case of an error occurred.
+			session.getTransaction().rollback();
+			return null;
+		} finally {
+			session.close();
+		}
+	}
 }

@@ -31,6 +31,9 @@ public class Consultant {
 	
 	@Column(name="password")
 	private String password;
+	
+	@Column(name="status")
+	private boolean status;
 /*	
 	@OneToOne
 	@JoinColumn(name="id")
@@ -104,6 +107,23 @@ public class Consultant {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	public String getPasswordConfirm() {
+		return password_confirm;
+	}
+
+	public void setPasswordConfirm(String password_confirm) {
+		this.password_confirm = password_confirm;
+	}
+	
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
 /*	
 	public Group getGroup() {
 		return group;
@@ -121,12 +141,5 @@ public class Consultant {
 		this.histories = histories;
 	}
 */
-
-	public String getPasswordConfirm() {
-		return password_confirm;
-	}
-
-	public void setPasswordConfirm(String password_confirm) {
-		this.password_confirm = password_confirm;
-	}	
+		
 }

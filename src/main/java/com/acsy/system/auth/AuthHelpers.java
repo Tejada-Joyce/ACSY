@@ -45,4 +45,12 @@ public class AuthHelpers {
 		return false;
 	}
 	
+	public static boolean destroySession(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		current_user = null;
+		HttpSession session=request.getSession(); 
+	    session.invalidate();
+	    response.sendRedirect("/ACSY/index.jsp");
+	    return true;	
+	}
+	
 }

@@ -44,25 +44,30 @@ public class Login extends HttpServlet {
 		// TODO Auto-generated method stub
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
+		
 		AdminDAO ad = AdminDAO.getInstance();
 		Admin admin = ad.validate(email, password);
 		ConsultantDAO cd = ConsultantDAO.getInstance();
 		Consultant cons = cd.validate(email, password);
+			
+				
 		if (admin != null) {
 	      HttpSession session=request.getSession();  	      
 	      session.setAttribute("user_id", admin.getId());
 	      session.setAttribute("type", "admin");
 	      session.setAttribute("active", true);
 	      response.sendRedirect("consultants/index");
+	     
 		} else if (cons != null) {			 
 	      HttpSession session=request.getSession();  	      
 	      session.setAttribute("user_id", cons.getId());
 	      session.setAttribute("type", "consultant");
 	      session.setAttribute("active", true);
 	      response.sendRedirect("clients/index");
+	      
 		} else {
 	      request.setAttribute("error", "INVALID CREDENTIALS");
-	      request.getRequestDispatcher("index.jsp").forward(request, response);
+	      response.sendRedirect("/index.jsp");
 	      System.out.println(request.getRequestURI());
 	      System.out.println(request.getRequestURI());
 	      System.out.println(request.getRequestURI());

@@ -1,4 +1,4 @@
-package com.acsy.consultant;
+package com.acsy.admin;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -12,26 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 import org.jboss.logging.Logger;
 
 import com.acsy.appcontroller.AbstractCommand;
-import com.acsy.consultant.commands.*;
+import com.acsy.admin.commands.*;
 
-public class ConsultantApplicationController {
-	private static Logger logger = Logger.getLogger(ConsultantApplicationController.class);
+public class AdminApplicationController {
+	private static Logger logger = Logger.getLogger(AdminApplicationController.class);
     private final String PAGE_ERROR = "/pageError.jsp";
     private HttpServletRequest request;
     private HttpServletResponse response;
     private Map<String, Class> map;
     private String key;
     
-    public ConsultantApplicationController(HttpServletRequest request, HttpServletResponse  response){
+    public AdminApplicationController(HttpServletRequest request, HttpServletResponse  response){
 
 		this.map = new HashMap<String, Class>();
 		
-		this.map.put("INDEX", IndexCommand.class);
-		this.map.put("NEW", NewCommand.class);
-		this.map.put("CREATE", CreateCommand.class);
-		this.map.put("DELETE", DeleteCommand.class);
-		this.map.put("EDIT", EditCommand.class);
-		this.map.put("UPDATE", UpdateCommand.class);
+		this.map.put("NEWASSIGNMENT", NewAssignmentCommand.class);
+		this.map.put("CREATEASSIGNMENT", CreateAssignmentCommand.class);
 		
 		this.request = request;
 		this.response = response;

@@ -1,6 +1,7 @@
   package com.acsy.history;
 import javax.persistence.*;
 
+import com.acsy.assignment.Assignment;
 import com.acsy.client.Client;
 import com.acsy.consultant.Consultant;
 import com.acsy.group.Group;
@@ -20,19 +21,24 @@ public class History {
 	
 	@Column(name="rate")
 	private int rate;
-/*	
-	@ManyToOne
-	@JoinColumn(name = "id")
-	private Group group;
+	
+	@Column(name="done")
+	private boolean done;
 	
 	@ManyToOne
-	@JoinColumn(name = "id")
 	private Client client;
 	
 	@ManyToOne
-	@JoinColumn(name = "id")
-	private Consultant consultant;
-*/	
+	private Assignment assignment;
+	
+	public History() { }
+
+	public History(Client client, Assignment assignment) {
+		super();
+		this.client = client;
+		this.assignment = assignment;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -53,16 +59,16 @@ public class History {
 		return rate;
 	}
 
-	public void setRate(int rate) {
-		this.rate = rate;
-	}
-/*
-	public Group getGroup() {
-		return group;
+	public boolean isDone() {
+		return done;
 	}
 
-	public void setGroup(Group group) {
-		this.group = group;
+	public void setDone(boolean done) {
+		this.done = done;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
 	}
 
 	public Client getClient() {
@@ -73,12 +79,12 @@ public class History {
 		this.client = client;
 	}
 
-	public Consultant getConsultant() {
-		return consultant;
+	public Assignment getAssignment() {
+		return assignment;
 	}
 
-	public void setConsultant(Consultant consultant) {
-		this.consultant = consultant;
+	public void setAssignment(Assignment assignment) {
+		this.assignment = assignment;
 	}
-*/		
+	
 }

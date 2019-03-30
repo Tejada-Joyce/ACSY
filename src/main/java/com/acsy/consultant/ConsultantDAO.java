@@ -46,6 +46,24 @@ public class ConsultantDAO {
 		}
 	}
 	
+	public List<Consultant> getAllAvailable(){
+		try {
+			session = factory.openSession();
+			session.getTransaction().begin();
+			String sql = "from com.acsy.consultant.Consultant where status = 1";
+			List<Consultant> consultants = (List<Consultant>)session.createQuery(sql).getResultList();
+			session.getTransaction().commit();
+			return consultants;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//Rollback in case of an error occurred.
+			session.getTransaction().rollback();
+			return null;
+		} finally {
+			session.close();
+		}
+	}
+	
 	public Consultant get(int id){
 		try {
 			session = factory.openSession();
