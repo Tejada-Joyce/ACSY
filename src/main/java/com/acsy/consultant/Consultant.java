@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.acsy.group.Group;
-import com.acsy.history.History;
 
 @Entity
 @Table(name="consultants")
@@ -34,14 +33,6 @@ public class Consultant {
 	
 	@Column(name="status")
 	private boolean status;
-/*	
-	@OneToOne
-	@JoinColumn(name="id")
-	private Group group;
-
-*/
-//	@OneToMany(cascade = CascadeType.ALL, mappedBy = "consultants")
-	//private List<History> histories = new ArrayList<>();
 	
 	@Transient
 	private String password_confirm;
@@ -56,10 +47,7 @@ public class Consultant {
 		this.password = password;
 		this.password_confirm = password_confirm;
 	}
-/*
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "consultants")
-	private List<History> histories = new ArrayList<>();
-*/
+
 	public int getId() {
 		return id;
 	}
@@ -123,23 +111,5 @@ public class Consultant {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
-	
-/*	
-	public Group getGroup() {
-		return group;
-	}
-
-	public void setGroup(Group group) {
-		this.group = group;
-	}
-
-	public List<History> getHistories() {
-		return histories;
-	}
-
-	public void setHistories(List<History> histories) {
-		this.histories = histories;
-	}
-*/
-		
+			
 }

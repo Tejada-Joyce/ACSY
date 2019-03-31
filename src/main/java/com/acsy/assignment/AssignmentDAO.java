@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import com.acsy.database.hibernate.HibernateUtils;
-import com.acsy.history.History;
 
 public class AssignmentDAO {
 	SessionFactory factory = null;

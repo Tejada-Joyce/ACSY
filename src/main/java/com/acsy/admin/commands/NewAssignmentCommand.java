@@ -23,9 +23,9 @@ public class NewAssignmentCommand extends AbstractCommand {
 	      }
 	      AuthHelpers.authenticate_admin(request, response);
 	      request.setAttribute("operation", "new_assignment");
-	      request.setAttribute("action", "/admins/createassignment");
-	      request.setAttribute("groups", GroupDAO.getInstance().getAll());
-	      request.setAttribute("consultants", ConsultantDAO.getInstance().getAll());
+	      request.setAttribute("action", "/admins/create_assignment");
+	      request.setAttribute("groups", GroupDAO.getInstance().getAllAvailable());
+	      request.setAttribute("consultants", ConsultantDAO.getInstance().getAllAvailable());
 	      request.getRequestDispatcher(AdminHelpers.new_assignment_path).forward(request, response);
 	    }
 

@@ -26,8 +26,8 @@ public class AdminApplicationController {
 
 		this.map = new HashMap<String, Class>();
 		
-		this.map.put("NEWASSIGNMENT", NewAssignmentCommand.class);
-		this.map.put("CREATEASSIGNMENT", CreateAssignmentCommand.class);
+		this.map.put("NEW_ASSIGNMENT", NewAssignmentCommand.class);
+		this.map.put("CREATE_ASSIGNMENT", CreateAssignmentCommand.class);
 		
 		this.request = request;
 		this.response = response;

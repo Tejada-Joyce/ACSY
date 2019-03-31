@@ -9,8 +9,8 @@ import com.acsy.client.Client;
 import com.acsy.consultant.Consultant;
 import com.acsy.consultant.ConsultantDAO;
 import com.acsy.group.Group;
+import com.acsy.group.GroupDAO;
 import com.acsy.history.History;
-import com.acsy.history.HistoryDAO;
 
 @Entity
 @Table(name = "assignments")
@@ -36,7 +36,7 @@ public class Assignment {
 	@ManyToOne
 	private Consultant consultant;
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "assignments")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "assignment")
 	private List<History> histories = new ArrayList<>();
 		
 	public Assignment() { }	
@@ -103,7 +103,7 @@ public class Assignment {
 		this.histories = histories;
 	}
 	
-	@PostPersist
+	@PrePersist
 	public void createHistories() {
 		List<Client> clients = this.group.getClients();
 		this.total_histories = clients.size();
@@ -111,12 +111,13 @@ public class Assignment {
 		for ( Client client : clients ) {
 			histories.add(new History(client, this));
 		}
-		HistoryDAO.getInstance().save(histories);
-	}
+		this.setHistories(histories);
 	
-	@PostPersist
-	public void updateConsultantStatus() {
 		this.consultant.setStatus(false);
 		ConsultantDAO.getInstance().update(this.consultant);
+		
+		this.group.setStatus(false);
+		GroupDAO.getInstance().update(this.group);
 	}
+	
 }

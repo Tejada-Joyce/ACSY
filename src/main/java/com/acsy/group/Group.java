@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.acsy.client.Client;
-import com.acsy.history.History;
 
 @Entity
 @Table(name="groups")
@@ -23,7 +22,7 @@ public class Group {
 	@Column(name="status")
 	private boolean status;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "groups")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "group")
 	private List<Client> clients = new ArrayList<>();
 /*	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "groups")

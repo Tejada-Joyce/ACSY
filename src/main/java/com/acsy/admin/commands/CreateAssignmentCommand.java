@@ -33,13 +33,12 @@ public class CreateAssignmentCommand extends AbstractCommand {
 		
 		Group group = GroupDAO.getInstance().get(group_id);
 		Consultant consultant = ConsultantDAO.getInstance().get(consultant_id);
-		
 		Assignment assignment = new Assignment(group, consultant);
 		AssignmentDAO.getInstance().save(assignment);
 		// redirecting for now
 		request.setAttribute("notice", "Created succesfully.");
 		//request.getRequestDispatcher(ConsultantHelpers.index_path).forward(request, response);
-		response.sendRedirect("/ACSY/assignments/index");
+		response.sendRedirect("/ACSY/consultants/index");
 	}
 
 }
