@@ -111,5 +111,11 @@ public class Consultant {
 	public void setStatus(boolean status) {
 		this.status = status;
 	}
+
+	@Override
+	public String toString() {
+		return "Id: " + id + "\nFirst Name: " + first_name + "\nLast Name: " + last_name + "\nPhone: " + phone
+				+ "\nEmail: " + email;
+	}
 			
 }
