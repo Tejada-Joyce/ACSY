@@ -16,108 +16,108 @@ import com.acsy.history.History;
 @Table(name = "assignments")
 public class Assignment {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name="id")
+  private int id;
 
-	@Column(name="completed")
-	private boolean completed;
+  @Column(name="completed")
+  private boolean completed;
 
-	@Column(name="histories_counter")
-	private int histories_counter;
+  @Column(name="histories_counter")
+  private int histories_counter;
 
-	@Column(name="total_histories")
-	private int total_histories;
-	
-	@ManyToOne
-	private Group group;
-	
-	@ManyToOne
-	private Consultant consultant;
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "assignment")
-	private List<History> histories = new ArrayList<>();
-		
-	public Assignment() { }	
-		
-	public Assignment(Group group, Consultant consultant) {
-		super();
-		this.group = group;
-		this.consultant = consultant;
-	}
+  @Column(name="total_histories")
+  private int total_histories;
 
-	public int getId() {
-		return id;
-	}
+  @ManyToOne
+  private Group group;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+  @ManyToOne
+  private Consultant consultant;
 
-	public boolean isCompleted() {
-		return completed;
-	}
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "assignment")
+  private List<History> histories = new ArrayList<>();
 
-	public void setCompleted(boolean completed) {
-		this.completed = completed;
-	}
+  public Assignment() { }	
 
-	public int getHistoriesCounter() {
-		return histories_counter;
-	}
+  public Assignment(Group group, Consultant consultant) {
+    super();
+    this.group = group;
+    this.consultant = consultant;
+  }
 
-	public void setHistoriesCounter(int histories_counter) {
-		this.histories_counter = histories_counter;
-	}
+  public int getId() {
+    return id;
+  }
 
-	public int getTotalHistories() {
-		return total_histories;
-	}
+  public void setId(int id) {
+    this.id = id;
+  }
 
-	public void setTotalHistories(int total_histories) {
-		this.total_histories = total_histories;
-	}
+  public boolean isCompleted() {
+    return completed;
+  }
 
-	public Group getGroup() {
-		return group;
-	}
+  public void setCompleted(boolean completed) {
+    this.completed = completed;
+  }
 
-	public void setGroup(Group group) {
-		this.group = group;
-	}
+  public int getHistoriesCounter() {
+    return histories_counter;
+  }
 
-	public Consultant getConsultant() {
-		return consultant;
-	}
+  public void setHistoriesCounter(int histories_counter) {
+    this.histories_counter = histories_counter;
+  }
 
-	public void setConsultant(Consultant consultant) {
-		this.consultant = consultant;
-	}
+  public int getTotalHistories() {
+    return total_histories;
+  }
 
-	public List<History> getHistories() {
-		return histories;
-	}
+  public void setTotalHistories(int total_histories) {
+    this.total_histories = total_histories;
+  }
 
-	public void setHistories(List<History> histories) {
-		this.histories = histories;
-	}
-	
-	@PrePersist
-	public void createHistories() {
-		List<Client> clients = this.group.getClients();
-		this.total_histories = clients.size();
-		List<History> histories = new ArrayList<>();
-		for ( Client client : clients ) {
-			histories.add(new History(client, this));
-		}
-		this.setHistories(histories);
-	
-		this.consultant.setStatus(false);
-		ConsultantDAO.getInstance().update(this.consultant);
-		
-		this.group.setStatus(false);
-		GroupDAO.getInstance().update(this.group);
-	}
-	
+  public Group getGroup() {
+    return group;
+  }
+
+  public void setGroup(Group group) {
+    this.group = group;
+  }
+
+  public Consultant getConsultant() {
+    return consultant;
+  }
+
+  public void setConsultant(Consultant consultant) {
+    this.consultant = consultant;
+  }
+
+  public List<History> getHistories() {
+    return histories;
+  }
+
+  public void setHistories(List<History> histories) {
+    this.histories = histories;
+  }
+
+  @PrePersist
+  public void createHistories() {
+    List<Client> clients = this.group.getClients();
+    this.total_histories = clients.size();
+    List<History> histories = new ArrayList<>();
+    for ( Client client : clients ) {
+      histories.add(new History(client, this));
+    }
+    this.setHistories(histories);
+
+    this.consultant.setStatus(false);
+    ConsultantDAO.getInstance().update(this.consultant);
+
+    this.group.setStatus(false);
+    GroupDAO.getInstance().update(this.group);
+  }
+
 }

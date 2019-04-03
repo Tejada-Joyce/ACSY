@@ -11,7 +11,8 @@
 	<form action="${pageContext.request.contextPath}<%= action %>" method="post">
 		<fieldset>
 			<label><span>Description:</span>
-			<textarea name="description" rows="10" cols="28"></textarea></label> <label><span>Rate</span><select
+			<textarea name="description" rows="10" cols="28"></textarea></label> <label><span>Rate</span>
+			<select
 				name="rate">
 					<option value="1">1</option>
 					<option value="2">2</option>

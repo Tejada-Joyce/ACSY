@@ -5,117 +5,129 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.acsy.assignment.Assignment;
 import com.acsy.group.Group;
 
 @Entity
 @Table(name="consultants")
 public class Consultant {
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-	private int id;
-	
-	@Column(name="first_name")
-	private String first_name;
-	
-	@Column(name="last_name")
-	private String last_name;
-	
-	@Column(name="phone")
-	private String phone;
-	
-	@Column(name="email")
-	private String email;
-	
-	@Column(name="password")
-	private String password;
-	
-	@Column(name="status")
-	private boolean status;
-	
-	@Transient
-	private String password_confirm;
-	
-	public Consultant() {}
-	
-	public Consultant(String first_name, String last_name, String phone,String email, String password, String password_confirm) {
-		this.first_name = first_name;
-		this.last_name = last_name;
-		this.phone = phone;
-		this.email = email;
-		this.password = password;
-		this.password_confirm = password_confirm;
-	}
 
-	public int getId() {
-		return id;
-	}
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Column(name="id")
+  private int id;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+  @Column(name="first_name")
+  private String first_name;
 
-	public String getFirstName() {
-		return first_name;
-	}
+  @Column(name="last_name")
+  private String last_name;
 
-	public void setFirstName(String first_name) {
-		this.first_name = first_name;
-	}
+  @Column(name="phone")
+  private String phone;
 
-	public String getLastName() {
-		return last_name;
-	}
+  @Column(name="email")
+  private String email;
 
-	public void setLastName(String last_name) {
-		this.last_name = last_name;
-	}
+  @Column(name="password")
+  private String password;
 
-	public String getPhone() {
-		return phone;
-	}
+  @Column(name="status")
+  private boolean status;
 
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
+  @OneToMany(cascade = CascadeType.ALL, mappedBy = "consultant")
+  private List<Assignment> assignments = new ArrayList<>();
 
-	public String getEmail() {
-		return email;
-	}
+  @Transient
+  private String password_confirm;
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+  public Consultant() {}
 
-	public String getPassword() {
-		return password;
-	}
+  public Consultant(String first_name, String last_name, String phone,String email, String password, String password_confirm) {
+    this.first_name = first_name;
+    this.last_name = last_name;
+    this.phone = phone;
+    this.email = email;
+    this.password = password;
+    this.password_confirm = password_confirm;
+  }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public String getPasswordConfirm() {
-		return password_confirm;
-	}
+  public int getId() {
+    return id;
+  }
 
-	public void setPasswordConfirm(String password_confirm) {
-		this.password_confirm = password_confirm;
-	}
-	
-	public boolean isStatus() {
-		return status;
-	}
+  public void setId(int id) {
+    this.id = id;
+  }
 
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
+  public String getFirstName() {
+    return first_name;
+  }
 
-	@Override
-	public String toString() {
-		return "Id: " + id + "\nFirst Name: " + first_name + "\nLast Name: " + last_name + "\nPhone: " + phone
-				+ "\nEmail: " + email;
-	}
-			
+  public void setFirstName(String first_name) {
+    this.first_name = first_name;
+  }
+
+  public String getLastName() {
+    return last_name;
+  }
+
+  public void setLastName(String last_name) {
+    this.last_name = last_name;
+  }
+
+  public String getPhone() {
+    return phone;
+  }
+
+  public void setPhone(String phone) {
+    this.phone = phone;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public String getPasswordConfirm() {
+    return password_confirm;
+  }
+
+  public void setPasswordConfirm(String password_confirm) {
+    this.password_confirm = password_confirm;
+  }
+
+  public boolean isStatus() {
+    return status;
+  }
+
+  public void setStatus(boolean status) {
+    this.status = status;
+  }
+
+  public List<Assignment> getAssignments() {
+    return assignments;
+  }
+
+  public void setAssignments(List<Assignment> assignments) {
+    this.assignments = assignments;
+  }
+
+  @Override
+  public String toString() {
+    return "Id: " + id + "\nFirst Name: " + first_name + "\nLast Name: " + last_name + "\nPhone: " + phone
+        + "\nEmail: " + email;
+  }
+
 }

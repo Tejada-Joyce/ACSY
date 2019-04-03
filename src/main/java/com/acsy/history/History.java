@@ -2,6 +2,7 @@
 import javax.persistence.*;
 
 import com.acsy.assignment.Assignment;
+import com.acsy.assignment.AssignmentDAO;
 import com.acsy.client.Client;
 import com.acsy.consultant.Consultant;
 import com.acsy.group.Group;
@@ -30,6 +31,9 @@ public class History {
 	
 	@ManyToOne
 	private Assignment assignment;
+	
+	@Transient
+	private boolean was_done;
 	
 	public History() { }
 
@@ -87,4 +91,22 @@ public class History {
 		this.assignment = assignment;
 	}
 	
+	@PostLoad
+	public void loadIsDone() {
+	  this.was_done = this.done;
+	}
+	
+	@PostUpdate
+	public void checkAssignment() {
+	  if(this.was_done || (this.was_done == this.done)) return;
+	  Assignment assignment = this.assignment;
+	  if(!this.was_done && this.done) {
+	    int counter = assignment.getHistoriesCounter();
+	    assignment.setHistoriesCounter(counter++);
+	    if(assignment.getHistoriesCounter() == assignment.getTotalHistories()) {
+	      assignment.setCompleted(true);
+	    }
+	    AssignmentDAO.getInstance().update(assignment);
+	  }
+	}
 }
