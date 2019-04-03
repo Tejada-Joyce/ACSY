@@ -17,7 +17,7 @@ public class History {
 	private int id;
 	
 	@Column(name="description")
-	private String text;
+	private String description;
 	
 	@Column(name="rate")
 	private int rate;
@@ -47,12 +47,12 @@ public class History {
 		this.id = id;
 	}
 
-	public String getText() {
-		return text;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setDescription(String text) {
+		this.description = text;
 	}
 
 	public int getRate() {

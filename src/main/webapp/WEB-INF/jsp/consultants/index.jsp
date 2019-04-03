@@ -27,7 +27,6 @@
 				<th><a href="">Full Name</a></th>
 				<th>Phone</th>
 				<th>Email</th>
-				<th>Group</th>
 				<th col="2">Options</th>
 			</tr>
 			</thead>
@@ -41,7 +40,6 @@
 				<td><%= cons.getFirstName() + " " + cons.getLastName() %></td>
 				<td><%= cons.getPhone() %></td>
 				<td><%= cons.getEmail() %></td>
-				<td><%= "GROUP" %></td>
 				<td col="2">
 				  <a href="${pageContext.request.contextPath}<%= "/consultants/edit/"+cons.getId() %>">Edit</a>
 				  <a href="${pageContext.request.contextPath}<%= "/consultants/delete/"+cons.getId() %>">Delete</a>
