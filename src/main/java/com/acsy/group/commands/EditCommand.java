@@ -7,10 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.acsy.appcontroller.AbstractCommand;
-import com.acsy.client.Client;
-import com.acsy.client.ClientDAO;
-import com.acsy.client.ClientHelpers;
+import com.acsy.group.Group;
 import com.acsy.group.GroupDAO;
+import com.acsy.group.GroupHelpers;
 import com.acsy.system.auth.AuthHelpers;
 
 public class EditCommand extends AbstractCommand {
@@ -23,14 +22,14 @@ public class EditCommand extends AbstractCommand {
         return;
       }
       String[] splitted = request.getRequestURI().split("/");
-      String client_id = splitted[splitted.length-1];
-      int id = Integer.parseInt(client_id);
-      Client client = ClientDAO.getInstance().get(id); 
-      request.setAttribute("client", client);
+      String group_id = splitted[splitted.length-1];
+      int id = Integer.parseInt(group_id);
+      Group group = GroupDAO.getInstance().get(id); 
+      request.setAttribute("group", group);
       request.setAttribute("operation", "edit");
-      request.setAttribute("action", "/clients/update");
+      request.setAttribute("action", "/groups/update");
       request.setAttribute("groups", GroupDAO.getInstance().getAll());
-      request.getRequestDispatcher(ClientHelpers.edit_path).forward(request, response);
+      request.getRequestDispatcher(GroupHelpers.edit_path).forward(request, response);
     }
     else {
       response.sendError(400);

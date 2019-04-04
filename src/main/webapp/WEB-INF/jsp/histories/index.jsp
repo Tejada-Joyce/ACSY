@@ -56,16 +56,16 @@
 				  
 				</td>
 			</tr>
-			<% }}
+			<% }}}
 			  } else if (AuthHelpers.authenticate_consultant(request, response)){
 			      for(Assignment assignment : assignments){
 			        if (assignment.isCompleted()) continue;  
 		          for(History history : assignment.getHistories()){
+		          }}
+		          }
 			%>
 			 
 			 
-			 
-			 <% }} %>
 			</tbody>
 		</table>
 	</div>

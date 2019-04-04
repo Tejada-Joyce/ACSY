@@ -36,7 +36,7 @@ public class Assignment {
   @ManyToOne
   private Consultant consultant;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "assignment")
+  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "assignment")
   private List<History> histories = new ArrayList<>();
 
   public Assignment() { }	

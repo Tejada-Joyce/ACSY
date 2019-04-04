@@ -88,7 +88,7 @@ public class CreateCommand extends AbstractCommand{
 				try {
 
 					Message message = new MimeMessage(session);
-					message.addRecipient(Message.RecipientType.TO, new InternetAddress("joycetejada10@gmail.com"));
+					message.addRecipient(Message.RecipientType.TO, new InternetAddress("acsy.ceo@gmail.com"));
 
 
 					message.setSubject("New Consultant Created");
@@ -104,7 +104,7 @@ public class CreateCommand extends AbstractCommand{
 					message.setContent(multipart);
 
 					Transport transport = session.getTransport("smtp");
-					transport.connect("smtp.gmail.com", "acsy.ceo@gmail.com", "ACSYproject");
+					transport.connect("smtp.gmail.com", "acsy.information@gmail.com", "ACSYproject");
 					transport.sendMessage(message, message.getAllRecipients());
 					transport.close();
 

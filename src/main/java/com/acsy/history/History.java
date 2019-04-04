@@ -1,4 +1,4 @@
-  package com.acsy.history;
+package com.acsy.history;
 import javax.persistence.*;
 
 import com.acsy.assignment.Assignment;

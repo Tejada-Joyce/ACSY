@@ -38,7 +38,7 @@ public class DeleteCommand extends AbstractCommand {
     	  System.out.println(request.getContextPath()+ClientHelpers.index_path);
     	  System.out.println(request.getContextPath()+ClientHelpers.index_path);
     	  System.out.println(request.getContextPath()+ClientHelpers.index_path);
-        request.setAttribute("error", "Could not delete consultant, try again.'4");
+        request.setAttribute("error", "Could not delete client, try again.'4");
         request.getRequestDispatcher(request.getContextPath()+ClientHelpers.index_path).forward(request, response);
       }
 

@@ -35,7 +35,7 @@ public class Consultant {
   @Column(name="status")
   private boolean status;
 
-  @OneToMany(cascade = CascadeType.ALL, mappedBy = "consultant")
+  @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "consultant")
   private List<Assignment> assignments = new ArrayList<>();
 
   @Transient

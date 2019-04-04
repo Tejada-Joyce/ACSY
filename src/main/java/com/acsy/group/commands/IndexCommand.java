@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.acsy.appcontroller.AbstractCommand;
-import com.acsy.client.Client;
-import com.acsy.client.ClientDAO;
-import com.acsy.client.ClientHelpers;
+import com.acsy.group.Group;
+import com.acsy.group.GroupDAO;
+import com.acsy.group.GroupHelpers;
 import com.acsy.system.auth.AuthHelpers;
 
 public class IndexCommand extends AbstractCommand{
@@ -22,9 +22,9 @@ public class IndexCommand extends AbstractCommand{
         response.sendRedirect("/index.jsp");
         return;
       }
-      ArrayList<Client> clients = (ArrayList<Client>)ClientDAO.getInstance().getAll(); 
-      request.setAttribute("clients", clients);
-      request.getRequestDispatcher(ClientHelpers.index_path).forward(request, response);
+      ArrayList<Group> groups = (ArrayList<Group>)GroupDAO.getInstance().getAll(); 
+      request.setAttribute("groups", groups);
+      request.getRequestDispatcher(GroupHelpers.index_path).forward(request, response);
       return;
     }
   }

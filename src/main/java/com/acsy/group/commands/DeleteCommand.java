@@ -7,9 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.acsy.appcontroller.AbstractCommand;
-import com.acsy.client.Client;
-import com.acsy.client.ClientDAO;
-import com.acsy.client.ClientHelpers;
+import com.acsy.group.Group;
+import com.acsy.group.GroupDAO;
+import com.acsy.group.GroupHelpers;
 import com.acsy.system.auth.AuthHelpers;
 
 public class DeleteCommand extends AbstractCommand {
@@ -25,21 +25,21 @@ public class DeleteCommand extends AbstractCommand {
 
       // Deleting Client
       String[] splitted = request.getRequestURI().split("/");
-      String client_id = splitted[splitted.length-1];
-      int id = Integer.parseInt(client_id);
+      String group_id = splitted[splitted.length-1];
+      int id = Integer.parseInt(group_id);
 
-      ClientDAO client_dao = ClientDAO.getInstance();
-      Client client = client_dao.get(id);
-      if(client_dao.delete(client) != null) {
+      GroupDAO group_dao = GroupDAO.getInstance();
+      Group group = group_dao.get(id);
+      if(group_dao.delete(group) != null) {
         //json response soon
-        response.sendRedirect("clients/index");
+        response.sendRedirect("groups/index");
       } else {
-    	  System.out.println(request.getContextPath()+ClientHelpers.index_path);
-    	  System.out.println(request.getContextPath()+ClientHelpers.index_path);
-    	  System.out.println(request.getContextPath()+ClientHelpers.index_path);
-    	  System.out.println(request.getContextPath()+ClientHelpers.index_path);
-        request.setAttribute("error", "Could not delete consultant, try again.'4");
-        request.getRequestDispatcher(request.getContextPath()+ClientHelpers.index_path).forward(request, response);
+    	  System.out.println(request.getContextPath()+GroupHelpers.index_path);
+    	  System.out.println(request.getContextPath()+GroupHelpers.index_path);
+    	  System.out.println(request.getContextPath()+GroupHelpers.index_path);
+    	  System.out.println(request.getContextPath()+GroupHelpers.index_path);
+        request.setAttribute("error", "Could not delete group, try again.'4");
+        request.getRequestDispatcher(request.getContextPath()+GroupHelpers.index_path).forward(request, response);
       }
 
 

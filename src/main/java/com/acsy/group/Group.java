@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.acsy.assignment.Assignment;
 import com.acsy.client.Client;
 
 @Entity
@@ -24,10 +25,10 @@ public class Group {
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "group")
 	private List<Client> clients = new ArrayList<>();
-/*	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "groups")
-	private List<History> histories = new ArrayList<>();
-*/	
+	
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "group")
+	private List<Assignment> assignments = new ArrayList<>();
+
 	public int getId() {
 		return id;
 	}
@@ -59,13 +60,13 @@ public class Group {
 	public void setClients(List<Client> clients) {
 		this.clients = clients;
 	}
-/*
-	public List<History> getHistories() {
-		return histories;
+
+	public List<Assignment> getAssignments() {
+		return assignments;
 	}
 
-	public void setHistories(List<History> histories) {
-		this.histories = histories;
+	public void setAssignments(List<Assignment> assignments) {
+		this.assignments = assignments;
 	}
-*/	
+	
 }
