@@ -7,13 +7,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.acsy.appcontroller.AbstractCommand;
+import com.acsy.consultant.Consultant;
+import com.acsy.consultant.ConsultantDAO;
+import com.acsy.consultant.ConsultantHelpers;
+import com.acsy.system.auth.AuthHelpers;
 
 public class ShowCommand extends AbstractCommand {
 
-	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		
-	}
-
+  @Override
+  public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    if ("POST".equals(request.getMethod()) ){
+      if (!AuthHelpers.authenticate_admin(request, response)) {
+        response.sendRedirect("index.jsp");
+        return;
+      }
+      System.out.println("ENTRA A SHOW");
+      int consultant_id = Integer.parseInt(request.getParameter("consultant_id"));
+      Consultant consultant = ConsultantDAO.getInstance().get(consultant_id);
+      request.setAttribute("consultant", consultant);
+      request.setAttribute("assignments", consultant.getAssignments());
+      request.setAttribute("operation", "show");
+      request.getRequestDispatcher(ConsultantHelpers.show_path).forward(request, response);
+      System.out.println("REDIRECCIONS");
+    } else {
+      System.out.println("SOMETHING BIG");
+    }
+  }
 }

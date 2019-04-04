@@ -32,6 +32,7 @@ public class ConsultantApplicationController {
 		this.map.put("DELETE", DeleteCommand.class);
 		this.map.put("EDIT", EditCommand.class);
 		this.map.put("UPDATE", UpdateCommand.class);
+		this.map.put("SHOW", ShowCommand.class);
 		
 		this.request = request;
 		this.response = response;

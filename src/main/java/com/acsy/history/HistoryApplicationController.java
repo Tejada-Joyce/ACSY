@@ -12,8 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.jboss.logging.Logger;
 
 import com.acsy.appcontroller.AbstractCommand;
-import com.acsy.client.commands.*;
-import com.acsy.history.commands.SetDoneCommand;
+import com.acsy.history.commands.*;
 
 public class HistoryApplicationController {
 	private static Logger logger = Logger.getLogger(HistoryApplicationController.class);
@@ -28,10 +27,10 @@ public class HistoryApplicationController {
 		this.map = new HashMap<String, Class>();
 		
 		this.map.put("INDEX", IndexCommand.class);
-		this.map.put("CREATE", CreateCommand.class);
 		this.map.put("EDIT", EditCommand.class);
 		this.map.put("UPDATE", UpdateCommand.class);
 		this.map.put("SET_DONE", SetDoneCommand.class);
+		this.map.put("DELETE", DeleteCommand.class);
 		
 		this.request = request;
 		this.response = response;
