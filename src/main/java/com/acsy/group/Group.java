@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.acsy.assignment.Assignment;
 import com.acsy.client.Client;
 
@@ -26,8 +29,13 @@ public class Group {
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "group")
 	private List<Client> clients = new ArrayList<>();
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "group")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
 	private List<Assignment> assignments = new ArrayList<>();
+	
+	public Group() {
+		this.status = true;
+	}
 
 	public int getId() {
 		return id;

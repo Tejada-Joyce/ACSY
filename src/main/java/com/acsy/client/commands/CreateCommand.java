@@ -20,7 +20,7 @@ public class CreateCommand extends AbstractCommand{
 
     if ("POST".equals(request.getMethod()) ){
 		if (!AuthHelpers.authenticate_admin(request, response)) {
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("/ACSY/index.jsp");
 			return;
 		}
 		// Creating new Client

@@ -18,7 +18,7 @@ public class NewCommand extends AbstractCommand{
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     if ("GET".equals(request.getMethod()) ){
       if (!AuthHelpers.authenticate_admin(request, response)) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("/ACSY/index.jsp");
         return;
       }
       AuthHelpers.authenticate_admin(request, response);

@@ -21,10 +21,11 @@
 <div class="container browser-default">
 		<table id="list" class="display">
 			<thead>
-			<tr>
-				<th><a href="">Name</a></th>
+			<tr>	
+				<th>Client</th>			
 				<th>Description</th>
 				<th>Rate</th>
+				<th>Group</th>
 				<th>Completed</th>
 			</tr>
 			</thead>
@@ -38,8 +39,10 @@
 								
       		%>
 			<tr>
+				<td><%= history.getClient().getFirstName() + " " + history.getClient().getLastName()  %></td>
 				<td><%= history.getDescription()%></td>
 				<td><%= history.getRate() %></td>
+				<td><%= history.getAssignment().getGroup().getName() %></td>
 				<td><%= history.isDone() %></td>				
 			</tr>
 			<% }}}} %>

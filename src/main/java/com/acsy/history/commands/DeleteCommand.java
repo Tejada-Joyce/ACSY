@@ -19,7 +19,7 @@ public class DeleteCommand extends AbstractCommand {
     if ("GET".equals(request.getMethod()) ){
 
       if (!AuthHelpers.authenticate_admin(request, response)) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("/ACSY/index.jsp");
         return;
       }
 

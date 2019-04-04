@@ -7,7 +7,6 @@ public class ConsultantHelpers {
 	public static final String new_path = "/WEB-INF/jsp/consultants/new.jsp";
 	public static final String edit_path = "/WEB-INF/jsp/consultants/edit.jsp";
 	public static final String show_path = "/WEB-INF/jsp/consultants/show.jsp";
-	public static final String show_history_path = "/WEB-INF/jsp/consultants/history_form.jsp";
 	
 	// Verifies if password and password confirm match
 	public static boolean is_valid(Consultant consultant){

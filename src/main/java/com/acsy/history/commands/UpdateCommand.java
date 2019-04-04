@@ -22,7 +22,7 @@ public class UpdateCommand extends AbstractCommand{
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     if ("POST".equals(request.getMethod()) ){
       if (!AuthHelpers.authenticate_consultant(request, response)) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("/ACSY/index.jsp");
         return;
       }
 

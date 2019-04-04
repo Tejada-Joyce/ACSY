@@ -34,7 +34,7 @@
       name="last_name" 
       pattern="[a-zA-Z .-_]{3,99}"
       value="<%= consultant != null ? consultant.getLastName() : "" %>">
-    <label for="last_name">First Name</label>
+    <label for="last_name">Last Name</label>
     </div>
     
     <div>

@@ -31,7 +31,7 @@ public class CreateCommand extends AbstractCommand{
 
 		if ("POST".equals(request.getMethod()) ){
 			if (!AuthHelpers.authenticate_admin(request, response)) {
-				response.sendRedirect("index.jsp");
+				response.sendRedirect("/ACSY/index.jsp");
 				return;
 			}
 
@@ -96,7 +96,7 @@ public class CreateCommand extends AbstractCommand{
 					String msg = "A new consultant was created with the following information:\n\n" + consultant;
 
 					MimeBodyPart mimeBodyPart = new MimeBodyPart();
-					mimeBodyPart.setContent(msg, "text/html");
+					mimeBodyPart.setContent(msg, "text/plain");
 
 					Multipart multipart = new MimeMultipart();
 					multipart.addBodyPart(mimeBodyPart);

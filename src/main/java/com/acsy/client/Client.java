@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.acsy.group.Group;
 import com.acsy.history.History;
 
@@ -36,7 +39,8 @@ public class Client {
 	@ManyToOne
 	private Group group;
 	
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "client")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
 	private List<History> histories = new ArrayList<>();
 
 	public Client() {}

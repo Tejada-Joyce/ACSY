@@ -24,7 +24,7 @@ public class CreateAssignmentCommand extends AbstractCommand {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		if (!AuthHelpers.authenticate_admin(request, response)) {
-			response.sendRedirect("index.jsp");
+			response.sendRedirect("/ACSY/index.jsp");
 			return;
 		}
 		

@@ -42,7 +42,7 @@
 				<td><%= cl.getFirstName() + " " + cl.getLastName() %></td>
 				<td><%= cl.getPhone() %></td>
 				<td><%= cl.getEmail() %></td>
-				<td><%= "GROUP" %></td>
+				<td><%= cl.getGroup().getName()%></td>
 				<td col="2">
 				  <a href="${pageContext.request.contextPath}<%= "/clients/edit/"+cl.getId() %>">Edit</a>
 				  <a href="${pageContext.request.contextPath}<%= "/clients/delete/"+cl.getId() %>">Delete</a>

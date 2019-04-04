@@ -14,23 +14,22 @@ import com.acsy.system.auth.AuthHelpers;
 
 public class ShowCommand extends AbstractCommand {
 
-  @Override
-  public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    if ("POST".equals(request.getMethod()) ){
-      if (!AuthHelpers.authenticate_admin(request, response)) {
-        response.sendRedirect("index.jsp");
-        return;
-      }
-      System.out.println("ENTRA A SHOW");
-      int consultant_id = Integer.parseInt(request.getParameter("consultant_id"));
-      Consultant consultant = ConsultantDAO.getInstance().get(consultant_id);
-      request.setAttribute("consultant", consultant);
-      request.setAttribute("assignments", consultant.getAssignments());
-      request.setAttribute("operation", "show");
-      request.getRequestDispatcher(ConsultantHelpers.show_path).forward(request, response);
-      System.out.println("REDIRECCIONS");
-    } else {
-      System.out.println("SOMETHING BIG");
-    }
-  }
+	@Override
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		if ("POST".equals(request.getMethod()) ){
+			if (!AuthHelpers.authenticate_admin(request, response)) {
+				response.sendRedirect("/ACSY/index.jsp");
+				return;
+			}      
+			int consultant_id = Integer.parseInt(request.getParameter("consultant_id"));
+			Consultant consultant = ConsultantDAO.getInstance().get(consultant_id);
+			request.setAttribute("consultant", consultant);
+			request.setAttribute("assignments", consultant.getAssignments());
+			request.setAttribute("operation", "show");
+			request.getRequestDispatcher(ConsultantHelpers.show_path).forward(request, response);
+
+		} else {
+			response.sendError(400);
+		}
+	}
 }
