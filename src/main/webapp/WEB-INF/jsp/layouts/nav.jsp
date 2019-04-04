@@ -12,7 +12,7 @@
       <li><a href="${pageContext.request.contextPath}/admins/new_assignment">Assign Group</a></li>
       <li><a href="${pageContext.request.contextPath}/clients/index">Clients</a></li>
       <li><a href="${pageContext.request.contextPath}/consultants/index">Consultants</a></li>
-      <li><a href="#">Groups</a></li>
+      <li><a href="${pageContext.request.contextPath}/groups/index">Groups</a></li>
       <li><a href="${pageContext.request.contextPath}/auth/Logout">Logout</a></li>
     </ul>
   </div>

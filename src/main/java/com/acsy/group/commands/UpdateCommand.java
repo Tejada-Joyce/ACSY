@@ -12,6 +12,7 @@ import com.acsy.client.ClientDAO;
 import com.acsy.client.ClientHelpers;
 import com.acsy.group.Group;
 import com.acsy.group.GroupDAO;
+import com.acsy.group.GroupHelpers;
 import com.acsy.system.auth.AuthHelpers;
 
 public class UpdateCommand extends AbstractCommand{
@@ -24,33 +25,24 @@ public class UpdateCommand extends AbstractCommand{
         return;
       }
 
-      // Creating new Client
-      int client_id = Integer.parseInt(request.getParameter("client_id"));
-      String first_name = request.getParameter("first_name");
-      String last_name = request.getParameter("last_name");
-      String phone = request.getParameter("phone");
-      String email = request.getParameter("email");
-      int group_id = Integer.parseInt(request.getParameter("group_id"));
-		
-      Group group = GroupDAO.getInstance().get(group_id);
+      // Update Group
       
-      Client client = ClientDAO.getInstance().get(client_id);
-      client.setFirstName(first_name);
-      client.setLastName(last_name);
-      client.setPhone(phone);
-      client.setEmail(email);
-      client.setGroup(group);
+      String name = request.getParameter("name");
+		
+      Group group = new Group();      
+  
+      group.setName(name);
 
-      if(ClientDAO.getInstance().update(client) != null) {
+      if(GroupDAO.getInstance().update(group) != null) {
         // send json with response
         // redirecting for now
         request.setAttribute("notice", "Updated succesfully.");
-        response.sendRedirect("/ACSY/clients/index");
+        response.sendRedirect("/ACSY/groups/index");
       } else {
         // send json with response
         // redirecting for now
-        request.setAttribute("error", "Could not update client, try again.");
-        request.getRequestDispatcher(ClientHelpers.index_path).forward(request, response);
+        request.setAttribute("error", "Could not update group, try again.");
+        request.getRequestDispatcher(GroupHelpers.index_path).forward(request, response);
       }
 
 
