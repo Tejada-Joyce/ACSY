@@ -39,7 +39,7 @@ public class LoginCommand extends AbstractCommand {
 	      session.setAttribute("user_id", cons.getId());
 	      session.setAttribute("type", "consultant");
 	      session.setAttribute("active", true);
-	      response.sendRedirect("/ACSY/clients/index");
+	      response.sendRedirect("/ACSY/histories/index");
 	      
 		} else {
 	      request.setAttribute("error", "INVALID CREDENTIALS");

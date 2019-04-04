@@ -37,7 +37,7 @@
 			for(Consultant cons : consultants){
       %>
 			<tr>
-				<td><%= cons.getFirstName() + " " + cons.getLastName() %></td>
+				<td><a href="#" onClick="to_show('${pageContext.request.contextPath}/consultants/show', 'consultant_id', <%= cons.getId() %>)"><%= cons.getFirstName() + " " + cons.getLastName() %></a></td>
 				<td><%= cons.getPhone() %></td>
 				<td><%= cons.getEmail() %></td>
 				<td col="2">
@@ -54,6 +54,34 @@
 		$(document).ready(function() {
 		    $('#list').DataTable();
 		} );
+		
+		function to_show(url, name, id){
+			$('<form action="'+url+'" method="POST"/>')
+	          .append($('<input type="hidden" name="'+name+'" value="'+id+'">'))
+	          .appendTo($(document.body)) //it has to be added somewhere into the <body>
+	          .submit();
+			//var data = ''+name+'='+id;
+			//$.post( url, { consultant_id : id });
+			/*$.ajax({
+				  type: "POST",
+				  url: url,
+				  data: data
+				  headers: {
+			            'Content-Type': 'application/x-www-form-urlencoded'
+			    },
+				});*/
+			//var formData = new FormData();
+			
+      //formData.append(name, id);
+      /*fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: data
+      });*/
+    }
+		
 	</script>
 </body>
 

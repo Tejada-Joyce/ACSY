@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.acsy.client.Client;
 import com.acsy.consultant.Consultant;
 import com.acsy.consultant.ConsultantDAO;
@@ -36,6 +39,7 @@ public class Assignment {
   @ManyToOne
   private Consultant consultant;
 
+  @LazyCollection(LazyCollectionOption.FALSE)
   @OneToMany(cascade = CascadeType.ALL, mappedBy = "assignment")
   private List<History> histories = new ArrayList<>();
 

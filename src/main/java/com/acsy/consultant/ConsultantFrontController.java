@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(name = "ConsultantFrontController", urlPatterns = "/consultants/*")
+@WebServlet(name = "ConsultantFrontController", urlPatterns = "/consultants/*", asyncSupported = true)
 public class ConsultantFrontController extends HttpServlet {
   private static final long serialVersionUID = 1L;
 

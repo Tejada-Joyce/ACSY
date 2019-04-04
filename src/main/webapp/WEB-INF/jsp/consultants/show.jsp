@@ -15,8 +15,7 @@
  <% 
   Consultant consultant = (Consultant)request.getAttribute("consultant");
   String action = (String)request.getAttribute("action");
-  String operation = (String)request.getAttribute("operation");
-  List<Assignment> assignments =  (ArrayList<Assignment>)request.getAttribute("assignments"); 
+  List<Assignment> assignments =  (List<Assignment>)request.getAttribute("assignments"); 
   %>
 <jsp:include page="../layouts/nav.jsp"></jsp:include>
 <div class="container browser-default">

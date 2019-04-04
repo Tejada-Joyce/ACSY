@@ -39,15 +39,19 @@ public class IndexCommand extends AbstractCommand{
             .stream()
             .filter(incomplete_assignments)
             .collect(Collectors.toList());
+        System.out.println(assigments.size());
+        System.out.println(assigments.size());
+        System.out.println(assigments.size());
+        System.out.println(assigments.size());
+        System.out.println(assigments.size());
+        System.out.println(assigments.size());
+        
         request.setAttribute("assignments", assigments);
         request.getRequestDispatcher(HistoryHelpers.index_path).forward(request, response);
       } else {
-        
+        response.sendError(401);
       }
-      ArrayList<Consultant> consultants = (ArrayList<Consultant>)ConsultantDAO.getInstance().getAll(); 
-      request.setAttribute("consultants", consultants);
-      request.getRequestDispatcher(ConsultantHelpers.index_path).forward(request, response);
-      return;
+      
     }
   }
 
