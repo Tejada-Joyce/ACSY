@@ -18,10 +18,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.consultant.Consultant;
 import com.acsy.consultant.ConsultantDAO;
 import com.acsy.consultant.ConsultantHelpers;
+import com.acsy.general.AbstractCommand;
 import com.acsy.system.auth.AuthHelpers;
 
 public class CreateCommand extends AbstractCommand{

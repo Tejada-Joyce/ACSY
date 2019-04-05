@@ -6,10 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.consultant.Consultant;
 import com.acsy.consultant.ConsultantDAO;
 import com.acsy.consultant.ConsultantHelpers;
+import com.acsy.general.AbstractCommand;
 import com.acsy.system.auth.AuthHelpers;
 
 public class DeleteCommand extends AbstractCommand {
@@ -30,8 +30,7 @@ public class DeleteCommand extends AbstractCommand {
       Consultant consultant = consultant_dao.get(id);
       if(consultant_dao.delete(consultant) != null) {
         //json response soon
-    	request.setAttribute("notice", "Deleted succesfully.");
-        response.sendRedirect("consultants/index");
+        response.sendRedirect("/ACSY/consultants/index");
       } else {
         request.setAttribute("error", "Could not delete consultant, try again.'4");
         request.getRequestDispatcher(ConsultantHelpers.index_path).forward(request, response);

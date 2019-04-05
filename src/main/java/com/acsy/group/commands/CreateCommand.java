@@ -6,9 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.client.Client;
 import com.acsy.client.ClientDAO;
+import com.acsy.general.AbstractCommand;
 import com.acsy.group.Group;
 import com.acsy.group.GroupDAO;
 import com.acsy.system.auth.AuthHelpers;
@@ -27,17 +27,10 @@ public class CreateCommand extends AbstractCommand{
 		String name = request.getParameter("name");
 		
 		Group group = new Group();	
-		System.out.println(group.isStatus());
-		System.out.println(group.isStatus());
-		System.out.println(group.isStatus());
 		group.setName(name);
 		
 		GroupDAO group_dao = GroupDAO.getInstance();		
 		group = group_dao.save(group);
-		
-		System.out.println(group.isStatus());
-		System.out.println(group.isStatus());
-		System.out.println(group.isStatus());
 		// send json with response
 		// redirecting for now
 		request.setAttribute("notice", "Created succesfully.");

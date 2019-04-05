@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.acsy.appcontroller.AbstractCommand;
+import com.acsy.general.AbstractCommand;
 import com.acsy.group.Group;
 import com.acsy.group.GroupDAO;
 import com.acsy.group.GroupHelpers;
@@ -33,20 +33,12 @@ public class DeleteCommand extends AbstractCommand {
     	request.setAttribute("notice", "Deleted succesfully.");
         response.sendRedirect("groups/index");
       } else {
-    	  System.out.println(request.getContextPath()+GroupHelpers.index_path);
-    	  System.out.println(request.getContextPath()+GroupHelpers.index_path);
-    	  System.out.println(request.getContextPath()+GroupHelpers.index_path);
-    	  System.out.println(request.getContextPath()+GroupHelpers.index_path);
-        request.setAttribute("error", "Could not delete group, try again.'4");
+    	request.setAttribute("error", "Could not delete group, try again.'4");
         request.getRequestDispatcher(request.getContextPath()+GroupHelpers.index_path).forward(request, response);
       }
 
 
     } else {
-      System.out.println("Your request could not be processed.");
-      System.out.println("Your request could not be processed.");
-      System.out.println("Your request could not be processed.");
-      System.out.println("Your request could not be processed.");
       response.sendError(400);
     }
   }

@@ -9,9 +9,9 @@ import javax.servlet.http.HttpSession;
 
 import com.acsy.admin.Admin;
 import com.acsy.admin.AdminDAO;
-import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.consultant.Consultant;
 import com.acsy.consultant.ConsultantDAO;
+import com.acsy.general.AbstractCommand;
 
 public class LoginCommand extends AbstractCommand {
 
@@ -44,9 +44,6 @@ public class LoginCommand extends AbstractCommand {
 		} else {
 	      request.setAttribute("error", "INVALID CREDENTIALS");
 	      response.sendRedirect("/ACSY/index.jsp");
-	      System.out.println(request.getRequestURI());
-	      System.out.println(request.getRequestURI());
-	      System.out.println(request.getRequestURI());
 	      
 		}
 	}

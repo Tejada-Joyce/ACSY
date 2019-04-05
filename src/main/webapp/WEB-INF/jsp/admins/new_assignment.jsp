@@ -16,7 +16,7 @@
 
 	<div class="container">
 		<div class="row">
-			<h2 class="center">New Assignment</h2>
+			<h4 class="center">New Assignment</h4>
 
 		</div>
 	</div>
@@ -24,11 +24,12 @@
 	  String action = (String)request.getAttribute("action");
 	  String operation = (String)request.getAttribute("operation");
 	%>
+	<div class="container row">
 	<form action="${pageContext.request.contextPath}<%= action %>"
 		method="post">
 		<div>
-			<div class="input-field">
-				<select name="group_id" class="browser-default" id="select-group">
+			<div class="input-field col s12 m6">
+				<select name="group_id" id="select-group">
 					<option value="" disabled selected>Choose Group</option>
 					<% 
 				List<Group> groups = (ArrayList<Group>)request.getAttribute("groups");
@@ -42,8 +43,8 @@
 			</div>
 		</div>
 		<div>
-			<div class="input-field">
-				<select name="consultant_id" class="browser-default" id="select-group">
+			<div class="input-field col s12 m6">
+				<select name="consultant_id" id="select-group">
 					<option value="" disabled selected>Choose Consultant</option>
 					<% 
 				List<Consultant> consultants = (ArrayList<Consultant>)request.getAttribute("consultants");
@@ -54,12 +55,13 @@
 					<% }} %>
 				</select> <label>Consultant</label>
 			</div>
-			<input type="submit" value="Create Assignment" class="submitBt">
+			<input type="submit" value="Create Assignment" class="btn">
 		</div>
 	</form>
+	</div>
 	<script type="text/javascript">
 		$(document).ready(function(){
-		    $('#select-group').formSelect();
+		    $('select').formSelect();
 		});
 	</script>
 </body>

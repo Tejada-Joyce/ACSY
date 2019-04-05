@@ -3,13 +3,13 @@
 <%@ page import="com.acsy.group.Group"%>
 
 <div class="container">
-	<%
-		Group group = (Group) request.getAttribute("group");
-		String action = (String) request.getAttribute("action");
-		String operation = (String) request.getAttribute("operation");
-	%>
-	<form action="${pageContext.request.contextPath}<%= action %>" method="post">
-		
+	<% 
+  Group group = (Group)request.getAttribute("group"); 
+  String action = (String)request.getAttribute("action");
+  String operation = (String)request.getAttribute("operation");
+  %>
+	<form id="form" action="${pageContext.request.contextPath}<%= action %>"
+		method="post">
 		<fieldset>
 			<legend>
 				<span>Group Information</span>
@@ -22,6 +22,15 @@
 			</div>
 		</fieldset>
 		<input type="submit"
-			value="<%="new".equals(operation) ? "Add Group" : "Update Group"%>" class="submitBt">			
+			value="<%= "new".equals(operation) ? "Add Group":"Update Group" %>"
+			class="btn indigo darken-1">
 	</form>
 </div>
+
+<script>
+$('#form').submit((event) => {
+	event.preventDefault();
+	var data = {name: $('#name').val()};
+	JSON
+});
+</script>

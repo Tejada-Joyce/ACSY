@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.acsy.admin.AdminHelpers;
-import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.consultant.ConsultantDAO;
+import com.acsy.general.AbstractCommand;
 import com.acsy.group.GroupDAO;
 import com.acsy.system.auth.AuthHelpers;
 

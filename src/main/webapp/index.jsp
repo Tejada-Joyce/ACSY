@@ -18,7 +18,7 @@
 	  <h1 class = "center-align"><%= session.getAttribute("type") != null ? session.getAttribute("type"):"Nothing" %></h1>
 	  <% if(AuthHelpers.getCurrentUser(request,response) == null) { %>
 	  <div class="container">
-	    <h2>Sign In</h2>
+	    <h4>Sign In</h4>
 			<form action="auth/Login" method="post">
 			    <fieldset>		     		       
 			        <label><span>Email:</span><input name="email" type="email" value="" placeholder="name123@acsy.com" required></label>

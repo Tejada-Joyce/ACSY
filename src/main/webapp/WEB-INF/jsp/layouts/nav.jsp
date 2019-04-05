@@ -5,8 +5,8 @@
 <%@ page import="com.acsy.consultant.Consultant" %>  
     
 <% if(AuthHelpers.authenticate_admin(request, response)) { %>
-<nav>
-  <div class="nav-wrapper light-blue">
+<nav class="indigo darken-4" style="padding: 0 15px 0 15px">
+  <div class="nav-wrapper">
     <a href="${pageContext.request.contextPath}" class="brand-logo">ACSY</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="${pageContext.request.contextPath}/admins/new_assignment">Assign Group</a></li>
@@ -18,7 +18,7 @@
   </div>
 </nav>
 <% } else if(AuthHelpers.authenticate_consultant(request, response)) { %>
-<nav>
+<nav class="indigo darken-4" style="padding: 0 15px 0 15px">
   <div class="nav-wrapper">
     <a href="#" class="brand-logo">ACSY</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -28,7 +28,7 @@
   </div>
 </nav>  
 <% } else { %>
-<nav>
+<nav class="indigo darken-4" style="padding: 0 15px 0 15px">
   <div class="nav-wrapper">
     <a href="#" class="brand-logo">ACSY</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">

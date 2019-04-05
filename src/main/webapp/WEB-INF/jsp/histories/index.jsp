@@ -23,7 +23,7 @@
 
 	<div class="container">
 		<div class="row">
-			<h2 class="center col s12">Histories</h2>
+			<h4 class="center col s12">Histories</h4>
 		</div>
 
 	</div>
@@ -32,7 +32,7 @@
 		<table id="list" class="display">
 			<thead>
 				<tr>
-					<th><a href="">Client Name</a></th>
+					<th>Client Name</th>
 					<th>Phone</th>
 					<th>Email</th>
 					<th>Group</th>
@@ -87,14 +87,14 @@
 		
 		function mark_as_done(url, history_id){
 			$('<form action="'+url+'" method="POST"/>')
-            .append($('<input type="hidden" name="history_id" value="'+history_id+'">'))
+            .append($('<input type="hidden" name="history_id" value="'+history_id+'"></form>'))
             .appendTo($(document.body)) //it has to be added somewhere into the <body>
             .submit();
 		}
 		
 		function to_edit(url, name, id){
 			$('<form action="'+url+'" method="POST"/>')
-            .append($('<input type="hidden" name="'+name+'" value="'+id+'">'))
+            .append($('<input type="hidden" name="'+name+'" value="'+id+'"></form>'))
             .appendTo($(document.body)) //it has to be added somewhere into the <body>
             .submit();
 		}

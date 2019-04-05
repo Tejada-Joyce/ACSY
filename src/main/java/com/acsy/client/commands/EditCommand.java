@@ -7,11 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.client.Client;
 import com.acsy.client.ClientDAO;
 import com.acsy.client.ClientHelpers;
 import com.acsy.group.Group;
+import com.acsy.general.AbstractCommand;
 import com.acsy.group.GroupDAO;
 import com.acsy.system.auth.AuthHelpers;
 
