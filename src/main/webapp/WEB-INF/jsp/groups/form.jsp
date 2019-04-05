@@ -8,7 +8,7 @@
   String action = (String)request.getAttribute("action");
   String operation = (String)request.getAttribute("operation");
   %>
-	<form action="${pageContext.request.contextPath}<%= action %>"
+	<form id="form" action="${pageContext.request.contextPath}<%= action %>"
 		method="post">
 		<fieldset>
 			<legend>
@@ -27,3 +27,11 @@
 			class="btn indigo darken-1">
 	</form>
 </div>
+
+<script>
+$('#form').submit((event) => {
+	event.preventDefault();
+	var data = {name: $('#name').val()};
+	JSON
+});
+</script>

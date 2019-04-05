@@ -9,9 +9,9 @@ import javax.servlet.http.HttpSession;
 
 import com.acsy.admin.Admin;
 import com.acsy.admin.AdminDAO;
-import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.consultant.Consultant;
 import com.acsy.consultant.ConsultantDAO;
+import com.acsy.general.AbstractCommand;
 
 public class LoginCommand extends AbstractCommand {
 

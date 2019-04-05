@@ -6,11 +6,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.assignment.Assignment;
 import com.acsy.consultant.Consultant;
 import com.acsy.consultant.ConsultantDAO;
 import com.acsy.consultant.ConsultantHelpers;
+import com.acsy.general.AbstractCommand;
 import com.acsy.history.History;
 import com.acsy.history.HistoryDAO;
 import com.acsy.history.HistoryHelpers;

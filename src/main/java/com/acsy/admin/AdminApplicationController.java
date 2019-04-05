@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jboss.logging.Logger;
 
-import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.admin.commands.*;
+import com.acsy.general.AbstractCommand;
 
 public class AdminApplicationController {
 	private static Logger logger = Logger.getLogger(AdminApplicationController.class);

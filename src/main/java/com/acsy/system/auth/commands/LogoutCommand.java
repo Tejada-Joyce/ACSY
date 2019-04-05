@@ -6,7 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.acsy.appcontroller.AbstractCommand;
+import com.acsy.general.AbstractCommand;
 import com.acsy.system.auth.AuthHelpers;
 
 public class LogoutCommand extends AbstractCommand {

@@ -6,10 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.assignment.AssignmentDAO;
 import com.acsy.consultant.Consultant;
 import com.acsy.consultant.ConsultantDAO;
+import com.acsy.general.AbstractCommand;
 import com.acsy.group.Group;
 import com.acsy.group.GroupDAO;
 import com.acsy.history.History;

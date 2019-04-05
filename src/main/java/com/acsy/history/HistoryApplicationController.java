@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jboss.logging.Logger;
 
-import com.acsy.appcontroller.AbstractCommand;
+import com.acsy.general.AbstractCommand;
 import com.acsy.history.commands.*;
 
 public class HistoryApplicationController {
