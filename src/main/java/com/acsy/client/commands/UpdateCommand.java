@@ -24,7 +24,7 @@ public class UpdateCommand extends AbstractCommand{
         return;
       }
 
-      // Creating new Client
+      // Updating Client
       int client_id = Integer.parseInt(request.getParameter("client_id"));
       String first_name = request.getParameter("first_name");
       String last_name = request.getParameter("last_name");

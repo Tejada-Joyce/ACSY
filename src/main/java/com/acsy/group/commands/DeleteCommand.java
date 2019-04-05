@@ -16,22 +16,21 @@ public class DeleteCommand extends AbstractCommand {
 
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    if ("GET".equals(request.getMethod()) ){
+    if ("POST".equals(request.getMethod()) ){
 
       if (!AuthHelpers.authenticate_admin(request, response)) {
         response.sendRedirect("/ACSY/index.jsp");
         return;
       }
 
-      // Deleting Client
-      String[] splitted = request.getRequestURI().split("/");
-      String group_id = splitted[splitted.length-1];
-      int id = Integer.parseInt(group_id);
+      // Deleting Group
+      int id = Integer.parseInt(request.getParameter("group_id"));
 
       GroupDAO group_dao = GroupDAO.getInstance();
       Group group = group_dao.get(id);
       if(group_dao.delete(group) != null) {
         //json response soon
+    	request.setAttribute("notice", "Deleted succesfully.");
         response.sendRedirect("groups/index");
       } else {
     	  System.out.println(request.getContextPath()+GroupHelpers.index_path);

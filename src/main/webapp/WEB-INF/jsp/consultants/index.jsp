@@ -41,8 +41,8 @@
 				<td><%= cons.getPhone() %></td>
 				<td><%= cons.getEmail() %></td>
 				<td col="2">
-				  <a href="${pageContext.request.contextPath}<%= "/consultants/edit/"+cons.getId() %>">Edit</a>
-				  <a href="${pageContext.request.contextPath}<%= "/consultants/delete/"+cons.getId() %>">Delete</a>
+				  <a onClick="to_edit('${pageContext.request.contextPath}/consultants/edit', 'client_id', <%= cons.getId() %>)" href="#">Edit</a> 
+				  <a onClick="to_delete('${pageContext.request.contextPath}/consultants/delete', 'client_id', <%= cons.getId() %>)" href="#">Delete</a> 
 				</td>
 			</tr>
 			<% }} %>
@@ -81,6 +81,19 @@
         body: data
       });*/
     }
+		function to_edit(url, name, id){
+			$('<form action="'+url+'" method="POST"/>')
+            .append($('<input type="hidden" name="'+name+'" value="'+id+'">'))
+            .appendTo($(document.body)) //it has to be added somewhere into the <body>
+            .submit();
+		}
+		
+		function to_delete(url, name, id){
+			$('<form action="'+url+'" method="POST"/>')
+            .append($('<input type="hidden" name="'+name+'" value="'+id+'">'))
+            .appendTo($(document.body)) //it has to be added somewhere into the <body>
+            .submit();
+		}
 		
 	</script>
 </body>

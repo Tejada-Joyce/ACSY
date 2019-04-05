@@ -41,10 +41,9 @@
 					<td><%=gr.getId()%></td>
 					<td><%=gr.getName()%></td>
 					<td><%=gr.isStatus() %></td>
-					<td col="2"><a
-						href="${pageContext.request.contextPath}<%= "/groups/edit/"+gr.getId() %>">Edit</a>
-						<a
-						href="${pageContext.request.contextPath}<%= "/groups/delete/"+gr.getId() %>">Delete</a>
+					<td col="2">
+						<a onClick="to_edit('${pageContext.request.contextPath}/groups/edit', 'group_id', <%= gr.getId() %>)" href="#">Edit</a> 
+						<a onClick="to_delete('${pageContext.request.contextPath}/groups/delete', 'group_id', <%= gr.getId() %>)" href="#">Delete</a>
 					</td>
 				</tr>
 				<%
@@ -59,6 +58,20 @@
 		$(document).ready(function() {
 			$('#list').DataTable();
 		});
+		
+		function to_edit(url, name, id){
+			$('<form action="'+url+'" method="POST"/>')
+            .append($('<input type="hidden" name="'+name+'" value="'+id+'">'))
+            .appendTo($(document.body)) //it has to be added somewhere into the <body>
+            .submit();
+		}
+		
+		function to_delete(url, name, id){
+			$('<form action="'+url+'" method="POST"/>')
+            .append($('<input type="hidden" name="'+name+'" value="'+id+'">'))
+            .appendTo($(document.body)) //it has to be added somewhere into the <body>
+            .submit();
+		}
 	</script>
 </body>
 

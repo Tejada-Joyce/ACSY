@@ -22,7 +22,7 @@ public class UpdateCommand extends AbstractCommand{
         return;
       }
 
-      // Creating new Consultant
+      // Updating Consultant
       int consultant_id = Integer.parseInt(request.getParameter("consultant_id"));
       String first_name = request.getParameter("first_name");
       String last_name = request.getParameter("last_name");

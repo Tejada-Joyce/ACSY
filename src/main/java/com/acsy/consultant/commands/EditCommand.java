@@ -16,14 +16,13 @@ public class EditCommand extends AbstractCommand {
 
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    if ("GET".equals(request.getMethod()) ){
+    if ("POST".equals(request.getMethod()) ){
       if (!AuthHelpers.authenticate_admin(request, response)) {
         response.sendRedirect("/ACSY/index.jsp");
         return;
       }
-      String[] splitted = request.getRequestURI().split("/");
-      String consultant_id = splitted[splitted.length-1];
-      int id = Integer.parseInt(consultant_id);
+      
+      int id = Integer.parseInt(request.getParameter("consultant_id"));
       Consultant consultant = ConsultantDAO.getInstance().get(id); 
       request.setAttribute("consultant", consultant);
       request.setAttribute("operation", "edit");
