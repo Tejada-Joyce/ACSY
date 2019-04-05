@@ -10,6 +10,7 @@ import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.client.Client;
 import com.acsy.client.ClientDAO;
 import com.acsy.client.ClientHelpers;
+import com.acsy.consultant.ConsultantDAO;
 import com.acsy.group.Group;
 import com.acsy.group.GroupDAO;
 import com.acsy.group.GroupHelpers;
@@ -25,12 +26,11 @@ public class UpdateCommand extends AbstractCommand{
         return;
       }
 
-      // Update Group
-      
+      // Updating Group
+      int group_id = Integer.parseInt(request.getParameter("group_id"));
       String name = request.getParameter("name");
 		
-      Group group = new Group();      
-  
+      Group group =  GroupDAO.getInstance().get(group_id);    
       group.setName(name);
 
       if(GroupDAO.getInstance().update(group) != null) {

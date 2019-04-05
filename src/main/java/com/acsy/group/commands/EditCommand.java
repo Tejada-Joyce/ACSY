@@ -27,7 +27,7 @@ public class EditCommand extends AbstractCommand {
       request.setAttribute("group", group);
       request.setAttribute("operation", "edit");
       request.setAttribute("action", "/groups/update");
-      request.setAttribute("groups", GroupDAO.getInstance().getAll());
+      //request.setAttribute("groups", GroupDAO.getInstance().getAll());
       request.getRequestDispatcher(GroupHelpers.edit_path).forward(request, response);
     }
     else {

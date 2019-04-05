@@ -17,7 +17,8 @@
 			<div>
 				<input placeholder="senti" id="name" type="text" class="validate"
 					name="name" pattern="[a-zA-Z .-_]{3,99}"
-					value="<%=group != null ? group.getName() : ""%>"> <label for="name">Group Name</label>					
+					value="<%=group != null ? group.getName() : ""%>"> <label for="name">Group Name</label>	
+				<input type="hidden" name="group_id" value="<%= group != null ? group.getId() : "" %>">					
 			</div>
 		</fieldset>
 		<input type="submit"

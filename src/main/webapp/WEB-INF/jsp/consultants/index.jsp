@@ -41,8 +41,8 @@
 				<td><%= cons.getPhone() %></td>
 				<td><%= cons.getEmail() %></td>
 				<td col="2">
-				  <a onClick="to_edit('${pageContext.request.contextPath}/consultants/edit', 'client_id', <%= cons.getId() %>)" href="#">Edit</a> 
-				  <a onClick="to_delete('${pageContext.request.contextPath}/consultants/delete', 'client_id', <%= cons.getId() %>)" href="#">Delete</a> 
+				  <a onClick="to_edit('${pageContext.request.contextPath}/consultants/edit', 'consultant_id', <%= cons.getId() %>)" href="#">Edit</a> 
+				  <a onClick="to_delete('${pageContext.request.contextPath}/consultants/delete', 'consultant_id', <%= cons.getId() %>)" href="#">Delete</a> 
 				</td>
 			</tr>
 			<% }} %>
