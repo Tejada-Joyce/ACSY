@@ -24,7 +24,7 @@
 		<table id="list" class="display">
 			<thead>
 			<tr>
-				<th><a href="">Full Name</a></th>
+				<th>Full Name</th>
 				<th>Phone</th>
 				<th>Email</th>
 				<th>Group</th>

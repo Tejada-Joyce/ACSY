@@ -27,17 +27,10 @@ public class CreateCommand extends AbstractCommand{
 		String name = request.getParameter("name");
 		
 		Group group = new Group();	
-		System.out.println(group.isStatus());
-		System.out.println(group.isStatus());
-		System.out.println(group.isStatus());
 		group.setName(name);
 		
 		GroupDAO group_dao = GroupDAO.getInstance();		
 		group = group_dao.save(group);
-		
-		System.out.println(group.isStatus());
-		System.out.println(group.isStatus());
-		System.out.println(group.isStatus());
 		// send json with response
 		// redirecting for now
 		request.setAttribute("notice", "Created succesfully.");

@@ -87,14 +87,14 @@
 		
 		function mark_as_done(url, history_id){
 			$('<form action="'+url+'" method="POST"/>')
-            .append($('<input type="hidden" name="history_id" value="'+history_id+'">'))
+            .append($('<input type="hidden" name="history_id" value="'+history_id+'"></form>'))
             .appendTo($(document.body)) //it has to be added somewhere into the <body>
             .submit();
 		}
 		
 		function to_edit(url, name, id){
 			$('<form action="'+url+'" method="POST"/>')
-            .append($('<input type="hidden" name="'+name+'" value="'+id+'">'))
+            .append($('<input type="hidden" name="'+name+'" value="'+id+'"></form>'))
             .appendTo($(document.body)) //it has to be added somewhere into the <body>
             .submit();
 		}

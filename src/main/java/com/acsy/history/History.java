@@ -92,11 +92,16 @@ public class History {
 		this.assignment = assignment;
 	}
 	
+	public boolean wasDone() {
+	  return this.was_done;
+	}
+	
 	@PostLoad
 	public void loadIsDone() {
 	  this.was_done = this.done;
 	}
 	
+	/*
 	@PreUpdate
 	public void checkAssignment() {
 	  if(this.was_done || (this.was_done == this.done)) return;
@@ -111,4 +116,5 @@ public class History {
 	    }
 	  }
 	}
+	*/
 }

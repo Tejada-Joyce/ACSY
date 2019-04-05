@@ -34,20 +34,12 @@ public class DeleteCommand extends AbstractCommand {
         //json response soon
         response.sendRedirect("groups/index");
       } else {
-    	  System.out.println(request.getContextPath()+GroupHelpers.index_path);
-    	  System.out.println(request.getContextPath()+GroupHelpers.index_path);
-    	  System.out.println(request.getContextPath()+GroupHelpers.index_path);
-    	  System.out.println(request.getContextPath()+GroupHelpers.index_path);
-        request.setAttribute("error", "Could not delete group, try again.'4");
+    	request.setAttribute("error", "Could not delete group, try again.'4");
         request.getRequestDispatcher(request.getContextPath()+GroupHelpers.index_path).forward(request, response);
       }
 
 
     } else {
-      System.out.println("Your request could not be processed.");
-      System.out.println("Your request could not be processed.");
-      System.out.println("Your request could not be processed.");
-      System.out.println("Your request could not be processed.");
       response.sendError(400);
     }
   }

@@ -32,21 +32,15 @@ public class DeleteCommand extends AbstractCommand {
       Client client = client_dao.get(id);
       if(client_dao.delete(client) != null) {
         //json response soon
-        response.sendRedirect("clients/index");
+        response.sendRedirect("/ACSY/clients/index");
       } else {
-    	  System.out.println(request.getContextPath()+ClientHelpers.index_path);
-    	  System.out.println(request.getContextPath()+ClientHelpers.index_path);
-    	  System.out.println(request.getContextPath()+ClientHelpers.index_path);
-    	  System.out.println(request.getContextPath()+ClientHelpers.index_path);
+    	System.out.println(request.getContextPath()+ClientHelpers.index_path);
         request.setAttribute("error", "Could not delete client, try again.'4");
         request.getRequestDispatcher(request.getContextPath()+ClientHelpers.index_path).forward(request, response);
       }
 
 
     } else {
-      System.out.println("Your request could not be processed.");
-      System.out.println("Your request could not be processed.");
-      System.out.println("Your request could not be processed.");
       System.out.println("Your request could not be processed.");
       response.sendError(400);
     }

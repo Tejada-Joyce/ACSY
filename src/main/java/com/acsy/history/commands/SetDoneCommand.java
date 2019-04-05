@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletResponse;
 import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.assignment.AssignmentDAO;
 import com.acsy.consultant.Consultant;
+import com.acsy.consultant.ConsultantDAO;
+import com.acsy.group.Group;
+import com.acsy.group.GroupDAO;
 import com.acsy.history.History;
 import com.acsy.history.HistoryDAO;
 import com.acsy.history.HistoryHelpers;
@@ -29,6 +32,20 @@ public class SetDoneCommand extends AbstractCommand {
       Consultant current_user = (Consultant) AuthHelpers.getCurrentUser(request, response);
       if (consultant.getId() == current_user.getId()) {
         history.setDone(true);
+        if(history.wasDone() || (history.wasDone() == history.isDone())) return;
+        if(!history.wasDone() && history.isDone()) {
+          int counter = history.getAssignment().getHistoriesCounter();
+          history.getAssignment().setHistoriesCounter(counter+1);
+          if(history.getAssignment().getHistoriesCounter() == history.getAssignment().getTotalHistories()) {
+            history.getAssignment().setCompleted(true);
+            Group group = history.getAssignment().getGroup();
+            group.setStatus(true);
+            GroupDAO.getInstance().update(group);
+            history.getAssignment().setGroup(group);
+            history.getAssignment().getConsultant().setStatus(true);
+            ConsultantDAO.getInstance().update(history.getAssignment().getConsultant());
+          }
+        }
         if (HistoryDAO.getInstance().update(history) != null) {
           AssignmentDAO.getInstance().update(history.getAssignment());
           response.sendRedirect("/ACSY/histories/index");

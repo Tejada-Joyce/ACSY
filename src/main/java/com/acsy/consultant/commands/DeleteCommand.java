@@ -32,7 +32,7 @@ public class DeleteCommand extends AbstractCommand {
       Consultant consultant = consultant_dao.get(id);
       if(consultant_dao.delete(consultant) != null) {
         //json response soon
-        response.sendRedirect("consultants/index");
+        response.sendRedirect("/ACSY/consultants/index");
       } else {
         request.setAttribute("error", "Could not delete consultant, try again.'4");
         request.getRequestDispatcher(ConsultantHelpers.index_path).forward(request, response);

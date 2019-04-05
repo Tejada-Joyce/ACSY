@@ -44,9 +44,6 @@ public class LoginCommand extends AbstractCommand {
 		} else {
 	      request.setAttribute("error", "INVALID CREDENTIALS");
 	      response.sendRedirect("/ACSY/index.jsp");
-	      System.out.println(request.getRequestURI());
-	      System.out.println(request.getRequestURI());
-	      System.out.println(request.getRequestURI());
 	      
 		}
 	}
