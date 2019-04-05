@@ -24,6 +24,6 @@
 		</fieldset>
 		<input type="submit"
 			value="<%= "new".equals(operation) ? "Add Group":"Update Group" %>"
-			class="submitBt">
+			class="btn indigo darken-1">
 	</form>
 </div>

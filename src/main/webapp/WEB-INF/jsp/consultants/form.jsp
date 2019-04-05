@@ -69,6 +69,6 @@
       <input type="hidden" name="consultant_id" value="<%= consultant != null ? consultant.getId() : "" %>">
     <% } %>
     </fieldset>
-    <input type="submit" value="<%= "new".equals(operation) ? "Add Consultant":"Update Consultant" %>" class="submitBt">
+    <input type="submit" value="<%= "new".equals(operation) ? "Add Consultant":"Update Consultant" %>" class="btn indigo darken-4">
 	</form>
 </div>

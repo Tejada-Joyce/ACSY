@@ -8,7 +8,7 @@
 </head>
 <body>
 	<jsp:include page="../layouts/nav.jsp"></jsp:include>
-	  <h2 class="center">Edit Consultant</h2>
+	  <h4 class="center">Edit Consultant</h4>
 	<jsp:include page="./form.jsp"></jsp:include>
 </body>
 </html>

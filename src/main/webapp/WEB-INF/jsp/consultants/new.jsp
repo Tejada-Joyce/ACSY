@@ -10,7 +10,7 @@
 <body>
 	<jsp:include page="../layouts/nav.jsp"></jsp:include>
 	<div class="container">
-	 <h2 class="center">New Consultant</h2>
+	 <h4 class="center">New Consultant</h4>
 	</div>
 	<jsp:include page="./form.jsp"></jsp:include>
 </body>

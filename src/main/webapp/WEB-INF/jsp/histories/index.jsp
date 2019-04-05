@@ -23,7 +23,7 @@
 
 	<div class="container">
 		<div class="row">
-			<h2 class="center col s12">Histories</h2>
+			<h4 class="center col s12">Histories</h4>
 		</div>
 
 	</div>
@@ -32,7 +32,7 @@
 		<table id="list" class="display">
 			<thead>
 				<tr>
-					<th><a href="">Client Name</a></th>
+					<th>Client Name</th>
 					<th>Phone</th>
 					<th>Email</th>
 					<th>Group</th>

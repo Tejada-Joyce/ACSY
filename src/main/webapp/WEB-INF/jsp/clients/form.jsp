@@ -12,40 +12,38 @@
   %>
 	<form action="${pageContext.request.contextPath}<%= action %>"
 		method="post">
-		<fieldset>
-			<legend>
-				<span>Personal Information</span>
-			</legend>
 			<div>
+			  <label for="first_name">First Name</label>
 				<input placeholder="Marina" id="first_name" type="text"
 					class="validate" name="first_name" pattern="[a-zA-Z .-_]{3,99}"
 					value="<%= client != null ? client.getFirstName() : "" %>">
-				<label for="first_name">First Name</label>
+				
 			</div>
 
 			<div>
+        <label for="last_name">Last Name</label>
 				<input placeholder="Ruiz" id="last_name" type="text"
 					class="validate" name="last_name" pattern="[a-zA-Z .-_]{3,99}"
 					value="<%= client != null ? client.getLastName() : "" %>">
-				<label for="last_name">First Name</label>
 			</div>
 
 			<div>
+			   <label for="phone">Phone</label>
 				<input placeholder="51968683215" id="phone" type="tel"
 					class="validate" name="phone"
-					value="<%= client != null ? client.getPhone() : "" %>"> <label
-					for="phone">Phone</label>
+					value="<%= client != null ? client.getPhone() : "" %>">
 			</div>
 
 			<div>
+			  <label for="email">Email</label>
 				<input placeholder="name123@gmail.com" id="email" type="text"
 					class="validate"
 					value="<%= client != null ? client.getEmail() : "" %>" name="email"
-					required> <label for="first_name">Email</label>
+					required>
 			</div>
 			<div>
 				<div class="input-field">
-					<select name="group_id" class="browser-default" id="select-group">
+					<select name="group_id" class="blue">
 						<option
 							value="<%= client != null ? client.getGroup().getId() : "" %>"
 							disabled selected><%= client != null ? client.getGroup().getName() : "Choose your option" %></option>
@@ -57,16 +55,17 @@
 						<option value="<%=gr.getId() %>"><%= gr.getName()%></option>
 						<% }} %>
 
-					</select> <label>Group</label>
+					</select>
+					<label>Group</label>
 				</div>
 			</div>
-			<input type="submit"
-				value="<%= "new".equals(operation) ? "Add Client":"Update Client" %>"
-				class="submitBt">
+			<input type="submit" class="btn indigo darken-1"
+				value="<%= "new".equals(operation) ? "Add Client":"Update Client" %>">
+				<a class="btn" href="${pageContext.request.contextPath}/clients/index">BACK</a>
 	</form>
 </div>
 <script type="text/javascript">
 $(document).ready(function(){
-    $('#select-group').formSelect();
-  });
+	$('select').formSelect();
+});
 </script>

@@ -13,11 +13,9 @@
 	<jsp:include page="../layouts/nav.jsp"></jsp:include>
 
 	<div class="container">
-		<div class="row">
-			<h2 class="center col s12 m6">Groups</h2>
-			<a class="center-align waves-effect waves-light btn col s12 m6"
-				href="new">NEW GROUP</a>
-		</div>
+		<div>
+  <h4 class="center">Groups</h4></div>
+  <a class="center-align btn indigo darken-1" href="new">NEW GROUP</a>
 
 	</div>
 

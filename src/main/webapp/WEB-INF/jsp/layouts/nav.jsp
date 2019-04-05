@@ -5,7 +5,7 @@
 <%@ page import="com.acsy.consultant.Consultant" %>  
     
 <% if(AuthHelpers.authenticate_admin(request, response)) { %>
-<nav class="light-blue" style="padding: 0 15px 0 15px">
+<nav class="indigo darken-4" style="padding: 0 15px 0 15px">
   <div class="nav-wrapper">
     <a href="${pageContext.request.contextPath}" class="brand-logo">ACSY</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -18,7 +18,7 @@
   </div>
 </nav>
 <% } else if(AuthHelpers.authenticate_consultant(request, response)) { %>
-<nav style="padding: 0 15px 0 15px">
+<nav class="indigo darken-4" style="padding: 0 15px 0 15px">
   <div class="nav-wrapper">
     <a href="#" class="brand-logo">ACSY</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
@@ -28,7 +28,7 @@
   </div>
 </nav>  
 <% } else { %>
-<nav style="padding: 0 15px 0 15px">
+<nav class="indigo darken-4" style="padding: 0 15px 0 15px">
   <div class="nav-wrapper">
     <a href="#" class="brand-logo">ACSY</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
