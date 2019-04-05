@@ -26,7 +26,7 @@ public class UpdateCommand extends AbstractCommand{
         return;
       }
 
-      int history_id = Integer.parseInt(request.getParameter("consultant_id"));
+      int history_id = Integer.parseInt(request.getParameter("history_id"));
       String description = request.getParameter("description");
       int rate = Integer.parseInt(request.getParameter("rate"));
 
@@ -38,10 +38,10 @@ public class UpdateCommand extends AbstractCommand{
         history.setRate(rate);
         if (HistoryDAO.getInstance().update(history) != null) {
           request.setAttribute("notice", "Updated succesfully.");
-          response.sendRedirect("/ACSY/consultants/index");
+          response.sendRedirect("/ACSY/histories/index");
         } else {
           request.setAttribute("error", "Could not update consultant, try again.");
-          request.getRequestDispatcher(ConsultantHelpers.index_path).forward(request, response);
+          response.sendRedirect("/ACSY/histories/index");
         }
       } else {
         response.sendError(401);

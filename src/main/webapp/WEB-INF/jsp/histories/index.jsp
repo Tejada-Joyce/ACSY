@@ -87,7 +87,7 @@
 		
 		function mark_as_done(url, history_id){
 			$('<form action="'+url+'" method="POST"/>')
-            .append($('<input type="hidden" name="history_id" value="'+id+'">'))
+            .append($('<input type="hidden" name="history_id" value="'+history_id+'">'))
             .appendTo($(document.body)) //it has to be added somewhere into the <body>
             .submit();
 		}
