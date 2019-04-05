@@ -7,9 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.acsy.appcontroller.AbstractCommand;
+import com.acsy.assignment.AssignmentDAO;
 import com.acsy.consultant.Consultant;
 import com.acsy.history.History;
 import com.acsy.history.HistoryDAO;
+import com.acsy.history.HistoryHelpers;
 import com.acsy.system.auth.AuthHelpers;
 
 public class SetDoneCommand extends AbstractCommand {
@@ -27,10 +29,15 @@ public class SetDoneCommand extends AbstractCommand {
       Consultant current_user = (Consultant) AuthHelpers.getCurrentUser(request, response);
       if (consultant.getId() == current_user.getId()) {
         history.setDone(true);
-        HistoryDAO.getInstance().update(history);
-        return;
+        if (HistoryDAO.getInstance().update(history) != null) {
+          AssignmentDAO.getInstance().update(history.getAssignment());
+          response.sendRedirect("/ACSY/histories/index");
+          return;
+        } else {
+          response.sendError(400);
+        }
       }
-      response.sendError(400);
+      response.sendError(401);
       
     } else {
       response.sendError(400);

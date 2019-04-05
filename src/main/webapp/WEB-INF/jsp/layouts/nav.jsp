@@ -22,7 +22,7 @@
   <div class="nav-wrapper">
     <a href="#" class="brand-logo">ACSY</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li><a href="#">My Clients</a></li>
+      <li><a href="${pageContext.request.contextPath}/histories/index">My Clients</a></li>
       <li><a href="${pageContext.request.contextPath}/auth/Logout">Logout</a></li>
     </ul>
   </div>

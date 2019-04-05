@@ -95,6 +95,23 @@ public class AssignmentDAO {
         }
     }
 	
+	public Assignment merge(Assignment assignment){
+      try {
+          session = factory.openSession();
+          session.getTransaction().begin();
+          session.merge(assignment);
+          session.getTransaction().commit();
+          return assignment;
+      } catch (Exception e) {
+          e.printStackTrace();
+          //Rollback in case of an error occurred.
+          session.getTransaction().rollback();
+          return null;
+      } finally {
+          session.close();
+      }
+  }
+	
 	public List<Assignment> assignmentsByCons(int consultant_id){
 		try {
 			session = factory.openSession();

@@ -131,6 +131,8 @@ public class HistoryDAO {
 	}
 	
 	public History update(History history){
+	  System.out.println("UPDATING HISTORY: ");
+      
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();

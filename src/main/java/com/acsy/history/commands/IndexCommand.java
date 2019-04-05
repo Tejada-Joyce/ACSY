@@ -33,7 +33,7 @@ public class IndexCommand extends AbstractCommand{
       }else if(AuthHelpers.authenticate_consultant(request, response)) {
         Consultant consultant = (Consultant)AuthHelpers.getCurrentUser(request, response);
         request.setAttribute("consultant", consultant);
-        Predicate<Assignment> incomplete_assignments = element -> !element.isCompleted();
+        Predicate<Assignment> incomplete_assignments = element -> !(element.isCompleted());
         List<Assignment> assigments = consultant
             .getAssignments()
             .stream()
