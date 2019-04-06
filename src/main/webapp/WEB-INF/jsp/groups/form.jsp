@@ -31,6 +31,17 @@
 $('#form').submit((event) => {
 	event.preventDefault();
 	var data = {name: $('#name').val()};
-	JSON
+	var JSON_data = JSON.stringify(data);
+	
+	$.ajax({
+		type: "POST",
+		url: ${pageContext.request.contextPath} + '<%= action %>',
+		data: JSON_data,
+		success: (response)=>{
+			alert(response.message);
+			window.location.href = ${pageContext.request.contextPath} + '/groups/index';
+		},
+		dataType: 'application/json',
+	})
 });
 </script>

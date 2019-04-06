@@ -32,7 +32,6 @@ public class GroupApplicationController {
 		this.map.put("DELETE", DeleteCommand.class);
 		this.map.put("EDIT", EditCommand.class);
 		this.map.put("UPDATE", UpdateCommand.class);
-		this.map.put("GET_JSON_LIST", GetJsonListCommand.class);
 		
 		this.request = request;
 		this.response = response;

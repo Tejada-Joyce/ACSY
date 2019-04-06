@@ -29,9 +29,8 @@ public class DeleteCommand extends AbstractCommand {
       GroupDAO group_dao = GroupDAO.getInstance();
       Group group = group_dao.get(id);
       if(group_dao.delete(group) != null) {
-        //json response soon
-    	request.setAttribute("notice", "Deleted succesfully.");
-        response.sendRedirect("groups/index");
+        //json response soon    	
+        response.sendRedirect("/ACSY/groups/index");
       } else {
     	request.setAttribute("error", "Could not delete group, try again.'4");
         request.getRequestDispatcher(request.getContextPath()+GroupHelpers.index_path).forward(request, response);

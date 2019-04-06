@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
 import com.acsy.client.Client;
 import com.acsy.client.ClientDAO;
 import com.acsy.general.AbstractCommand;
@@ -24,6 +26,7 @@ public class CreateCommand extends AbstractCommand{
 			return;
 		}
 		// Creating new Group
+		response.setContentType("application/json");
 		String name = request.getParameter("name");
 		
 		Group group = new Group();	
@@ -33,9 +36,14 @@ public class CreateCommand extends AbstractCommand{
 		group = group_dao.save(group);
 		// send json with response
 		// redirecting for now
-		request.setAttribute("notice", "Created succesfully.");
+		//request.setAttribute("notice", "Created successfully.");
 		//request.getRequestDispatcher(ConsultantHelpers.index_path).forward(request, response);
-		response.sendRedirect("index");
+		//response.sendRedirect("index");
+		
+		JSONObject resp = new JSONObject();
+		resp.put("message", "Group created successfully.");
+		response.getWriter().write(resp.toString());
+		
 
     } else {
       response.sendError(400);
