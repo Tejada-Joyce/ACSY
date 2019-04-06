@@ -18,7 +18,7 @@
 				<input placeholder="senti" id="name" type="text" class="validate"
 					name="name" pattern="[a-zA-Z .-_]{3,99}"
 					value="<%=group != null ? group.getName() : ""%>"> <label for="name">Group Name</label>	
-				<input type="hidden" name="group_id" value="<%= group != null ? group.getId() : "" %>">					
+				<input type="hidden" id="group_id" name="group_id" value="<%= group != null ? group.getId() : "" %>">					
 			</div>
 		</fieldset>
 		<input type="submit"
@@ -30,7 +30,24 @@
 <script>
 $('#form').submit((event) => {
 	event.preventDefault();
-	var data = {name: $('#name').val()};
-	JSON
+	$('#form').hide();
+	var data = {name: $('#name').val(), group_id: $('#group_id').val()};
+	var json_data = JSON.stringify(data);
+	$.ajax({
+		method: 'POST',
+		url: '${pageContext.request.contextPath}'+'<%= action %>',
+		data: json_data,
+		success: function(response){
+			console.log(response);
+			alert(response.message);
+			window.location.replace("/ACSY/groups/index");
+		},
+		error: function(response){
+			$('#form').show();
+      console.log('Something went wrong.');
+      alert(response.message);
+      $('#form').trigger("reset");
+    }
+	});
 });
 </script>

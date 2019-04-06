@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="com.acsy.group.Group"%>
@@ -41,7 +40,7 @@
 					<td><%=gr.isStatus() %></td>
 					<td col="2">
 						<a onClick="to_edit('${pageContext.request.contextPath}/groups/edit', 'group_id', <%= gr.getId() %>)" href="#">Edit</a> 
-						<a onClick="to_delete('${pageContext.request.contextPath}/groups/delete', 'group_id', <%= gr.getId() %>)" href="#">Delete</a>
+						<a onClick="delete_group('${pageContext.request.contextPath}/groups/delete', <%= gr.getId() %>)" href="#">Delete</a>
 					</td>
 				</tr>
 				<%
@@ -70,6 +69,26 @@
             .appendTo($(document.body)) //it has to be added somewhere into the <body>
             .submit();
 		}
+		
+		function delete_group(url, id){
+			var data = {group_id: id};
+		  var json_data = JSON.stringify(data);
+		  $.ajax({
+		    method: 'POST',
+		    url: url,
+		    data: json_data,
+		    success: function(response){
+		      console.log(response);
+		      alert(response.message);
+		      window.location.reload();
+		    },
+		    error: function(response){
+		      console.log('Something went wrong.');
+		      alert(response.message);
+		    }
+		  });
+		}
+		
 	</script>
 </body>
 
