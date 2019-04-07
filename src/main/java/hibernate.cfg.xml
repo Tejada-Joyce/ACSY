@@ -13,7 +13,7 @@
 		<property name="connection.password"></property>
 		
 		<!-- JDBC Connection Pool (use the built in) -->
-		<property name="connection.pool_size">1</property>
+		<property name="connection.pool_size">20</property>
 		
 		<!-- SQL dialect -->
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
@@ -33,6 +33,7 @@
 		<mapping class="com.acsy.consultant.Consultant"/>
 		<mapping class="com.acsy.group.Group"/>
 		<mapping class="com.acsy.history.History"/>
+		<mapping class="com.acsy.assignment.Assignment"/>
 	</session-factory>
 	
 </hibernate-configuration>

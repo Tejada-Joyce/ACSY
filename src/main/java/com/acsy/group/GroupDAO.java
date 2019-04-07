@@ -2,7 +2,6 @@ package com.acsy.group;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
 import com.acsy.database.hibernate.HibernateUtils;
 
 import java.util.*;
@@ -26,7 +25,7 @@ public class GroupDAO {
 		return single_instance;
 	}
 	
-	public List<Group> getGroups(){
+	public List<Group> getAll(){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
@@ -44,12 +43,81 @@ public class GroupDAO {
 		}
 	}
 	
-	public Group getGroup(int id){
+	public Group get(int id){
 		try {
 			session = factory.openSession();
 			session.getTransaction().begin();
 			String sql = "from com.acsy.group.Group where id = " + Integer.toString(id);
 			Group group = (Group)session.createQuery(sql).getSingleResult();
+			session.getTransaction().commit();
+			return group;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//Rollback in case of an error occurred.
+			session.getTransaction().rollback();
+			return null;
+		} finally {
+			session.close();
+		}
+	}
+	
+	public List<Group> getAllAvailable(){
+		try {
+			session = factory.openSession();
+			session.getTransaction().begin();
+			String sql = "from com.acsy.group.Group where status = 1";
+			List<Group> groups = (List<Group>)session.createQuery(sql).getResultList();
+			session.getTransaction().commit();
+			return groups;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//Rollback in case of an error occurred.
+			session.getTransaction().rollback();
+			return null;
+		} finally {
+			session.close();
+		}
+	}
+	
+	public Group delete(Group group){
+		try {
+			session = factory.openSession();
+			session.getTransaction().begin();
+			session.remove(group);
+			session.getTransaction().commit();
+			return group;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//Rollback in case of an error occurred.
+			session.getTransaction().rollback();
+			return null;
+		} finally {
+			session.close();
+		}
+	}
+	
+	public Group save(Group group){
+		try {
+			session = factory.openSession();
+			session.getTransaction().begin();
+			session.save(group);
+			session.getTransaction().commit();
+			return group;
+		} catch (Exception e) {
+			e.printStackTrace();
+			//Rollback in case of an error occurred.
+			session.getTransaction().rollback();
+			return null;
+		} finally {
+			session.close();
+		}
+	}
+	
+	public Group update(Group group){
+		try {
+			session = factory.openSession();
+			session.getTransaction().begin();
+			session.update(group);
 			session.getTransaction().commit();
 			return group;
 		} catch (Exception e) {

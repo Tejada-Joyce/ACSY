@@ -5,6 +5,9 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import com.acsy.group.Group;
 import com.acsy.history.History;
 
@@ -32,14 +35,14 @@ public class Client {
 	
 	@Column(name="status")
 	private int status;
-/*	
+	
 	@ManyToOne
-	@JoinColumn(name = "id")
 	private Group group;
-
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "clients")
+	
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "client")
 	private List<History> histories = new ArrayList<>();
-*/
+
 	public Client() {}
 	
 	public Client(String first_name, String last_name, String phone,String email) {
@@ -47,6 +50,14 @@ public class Client {
 		this.last_name = last_name;
 		this.phone = phone;
 		this.email = email;
+	}
+	
+	public Client(String first_name, String last_name, String phone,String email, Group group) {
+		this.first_name = first_name;
+		this.last_name = last_name;
+		this.phone = phone;
+		this.email = email;
+		this.group = group;
 	}
 	
 	public int getId() {
@@ -96,7 +107,7 @@ public class Client {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-/*
+
 	public Group getGroup() {
 		return group;
 	}
@@ -112,5 +123,11 @@ public class Client {
 	public void setHistories(List<History> histories) {
 		this.histories = histories;
 	}
-*/			
+	
+	@Override
+	  public String toString() {
+	    return "Id: " + id + "\nFirst Name: " + first_name + "\nLast Name: " + last_name + "\nPhone: " + phone
+	        + "\nEmail: " + email;
+	  }
+		
 }

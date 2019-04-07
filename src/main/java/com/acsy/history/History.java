@@ -1,9 +1,12 @@
-  package com.acsy.history;
+package com.acsy.history;
 import javax.persistence.*;
 
+import com.acsy.assignment.Assignment;
+import com.acsy.assignment.AssignmentDAO;
 import com.acsy.client.Client;
 import com.acsy.consultant.Consultant;
 import com.acsy.group.Group;
+import com.acsy.group.GroupDAO;
 
 @Entity
 @Table(name="histories")
@@ -16,23 +19,31 @@ public class History {
 	private int id;
 	
 	@Column(name="description")
-	private String text;
+	private String description;
 	
 	@Column(name="rate")
 	private int rate;
-/*	
-	@ManyToOne
-	@JoinColumn(name = "id")
-	private Group group;
+	
+	@Column(name="done")
+	private boolean done;
 	
 	@ManyToOne
-	@JoinColumn(name = "id")
 	private Client client;
 	
 	@ManyToOne
-	@JoinColumn(name = "id")
-	private Consultant consultant;
-*/	
+	private Assignment assignment;
+	
+	@Transient
+	private boolean was_done;
+	
+	public History() { }
+
+	public History(Client client, Assignment assignment) {
+		super();
+		this.client = client;
+		this.assignment = assignment;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -41,28 +52,28 @@ public class History {
 		this.id = id;
 	}
 
-	public String getText() {
-		return text;
+	public String getDescription() {
+		return description;
 	}
 
-	public void setText(String text) {
-		this.text = text;
+	public void setDescription(String text) {
+		this.description = text;
 	}
 
 	public int getRate() {
 		return rate;
 	}
 
-	public void setRate(int rate) {
-		this.rate = rate;
-	}
-/*
-	public Group getGroup() {
-		return group;
+	public boolean isDone() {
+		return done;
 	}
 
-	public void setGroup(Group group) {
-		this.group = group;
+	public void setDone(boolean done) {
+		this.done = done;
+	}
+
+	public void setRate(int rate) {
+		this.rate = rate;
 	}
 
 	public Client getClient() {
@@ -73,12 +84,37 @@ public class History {
 		this.client = client;
 	}
 
-	public Consultant getConsultant() {
-		return consultant;
+	public Assignment getAssignment() {
+		return assignment;
 	}
 
-	public void setConsultant(Consultant consultant) {
-		this.consultant = consultant;
+	public void setAssignment(Assignment assignment) {
+		this.assignment = assignment;
 	}
-*/		
+	
+	public boolean wasDone() {
+	  return this.was_done;
+	}
+	
+	@PostLoad
+	public void loadIsDone() {
+	  this.was_done = this.done;
+	}
+	
+	/*
+	@PreUpdate
+	public void checkAssignment() {
+	  if(this.was_done || (this.was_done == this.done)) return;
+	  if(!this.was_done && this.done) {
+	    int counter = this.assignment.getHistoriesCounter();
+	    this.assignment.setHistoriesCounter(counter+1);
+	    if(this.assignment.getHistoriesCounter() == this.assignment.getTotalHistories()) {
+	      this.assignment.setCompleted(true);
+	      Group group = this.assignment.getGroup();
+	      group.setStatus(true);
+	      this.assignment.setGroup(group);
+	    }
+	  }
+	}
+	*/
 }

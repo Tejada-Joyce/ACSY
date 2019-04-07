@@ -6,24 +6,23 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.consultant.Consultant;
 import com.acsy.consultant.ConsultantDAO;
 import com.acsy.consultant.ConsultantHelpers;
+import com.acsy.general.AbstractCommand;
 import com.acsy.system.auth.AuthHelpers;
 
 public class EditCommand extends AbstractCommand {
 
   @Override
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    if ("GET".equals(request.getMethod()) ){
+    if ("POST".equals(request.getMethod()) ){
       if (!AuthHelpers.authenticate_admin(request, response)) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("/ACSY/index.jsp");
         return;
       }
-      String[] splitted = request.getRequestURI().split("/");
-      String consultant_id = splitted[splitted.length-1];
-      int id = Integer.parseInt(consultant_id);
+      
+      int id = Integer.parseInt(request.getParameter("consultant_id"));
       Consultant consultant = ConsultantDAO.getInstance().get(id); 
       request.setAttribute("consultant", consultant);
       request.setAttribute("operation", "edit");

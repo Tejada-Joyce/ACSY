@@ -11,13 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.jboss.logging.Logger;
 
-import com.acsy.appcontroller.AbstractCommand;
-import com.acsy.appcontroller.ApplicationController;
-import com.acsy.client.ClientCommand;
 import com.acsy.consultant.commands.*;
+import com.acsy.general.AbstractCommand;
 
 public class ConsultantApplicationController {
-	private static Logger logger = Logger.getLogger(ApplicationController.class);
+	private static Logger logger = Logger.getLogger(ConsultantApplicationController.class);
     private final String PAGE_ERROR = "/pageError.jsp";
     private HttpServletRequest request;
     private HttpServletResponse response;
@@ -34,6 +32,7 @@ public class ConsultantApplicationController {
 		this.map.put("DELETE", DeleteCommand.class);
 		this.map.put("EDIT", EditCommand.class);
 		this.map.put("UPDATE", UpdateCommand.class);
+		this.map.put("SHOW", ShowCommand.class);
 		
 		this.request = request;
 		this.response = response;

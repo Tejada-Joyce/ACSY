@@ -13,10 +13,9 @@
   <jsp:include page="../layouts/nav.jsp"></jsp:include>
 	
 	<div class="container">
-	<div class="row">
-    <h2 class="center col s12 m6">Consultants</h2>
-    <a class="center-align waves-effect waves-light btn col s12 m6" href="new">NEW CONSULTANT</a>
-	</div>
+	<div>
+  <h4 class="center">Consultants</h4></div>
+  <a class="center-align btn indigo darken-1" href="new">NEW CONSULTANT</a>
 	
   </div>
   	
@@ -24,10 +23,9 @@
 		<table id="list" class="display">
 			<thead>
 			<tr>
-				<th><a href="">Full Name</a></th>
+				<th>Full Name</th>
 				<th>Phone</th>
 				<th>Email</th>
-				<th>Group</th>
 				<th col="2">Options</th>
 			</tr>
 			</thead>
@@ -38,13 +36,12 @@
 			for(Consultant cons : consultants){
       %>
 			<tr>
-				<td><%= cons.getFirstName() + " " + cons.getLastName() %></td>
+				<td><a href="#" onClick="to_show('${pageContext.request.contextPath}/consultants/show', 'consultant_id', <%= cons.getId() %>)"><%= cons.getFirstName() + " " + cons.getLastName() %></a></td>
 				<td><%= cons.getPhone() %></td>
 				<td><%= cons.getEmail() %></td>
-				<td><%= "GROUP" %></td>
 				<td col="2">
-				  <a href="${pageContext.request.contextPath}<%= "/consultants/edit/"+cons.getId() %>">Edit</a>
-				  <a href="${pageContext.request.contextPath}<%= "/consultants/delete/"+cons.getId() %>">Delete</a>
+				  <a onClick="to_edit('${pageContext.request.contextPath}/consultants/edit', 'consultant_id', <%= cons.getId() %>)" href="#">Edit</a> 
+				  <a onClick="to_delete('${pageContext.request.contextPath}/consultants/delete', 'consultant_id', <%= cons.getId() %>)" href="#">Delete</a> 
 				</td>
 			</tr>
 			<% }} %>
@@ -56,6 +53,47 @@
 		$(document).ready(function() {
 		    $('#list').DataTable();
 		} );
+		
+		function to_show(url, name, id){
+			$('<form action="'+url+'" method="POST"/>')
+	          .append($('<input type="hidden" name="'+name+'" value="'+id+'">'))
+	          .appendTo($(document.body)) //it has to be added somewhere into the <body>
+	          .submit();
+			//var data = ''+name+'='+id;
+			//$.post( url, { consultant_id : id });
+			/*$.ajax({
+				  type: "POST",
+				  url: url,
+				  data: data
+				  headers: {
+			            'Content-Type': 'application/x-www-form-urlencoded'
+			    },
+				});*/
+			//var formData = new FormData();
+			
+      //formData.append(name, id);
+      /*fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: data
+      });*/
+    }
+		function to_edit(url, name, id){
+			$('<form action="'+url+'" method="POST"/>')
+            .append($('<input type="hidden" name="'+name+'" value="'+id+'">'))
+            .appendTo($(document.body)) //it has to be added somewhere into the <body>
+            .submit();
+		}
+		
+		function to_delete(url, name, id){
+			$('<form action="'+url+'" method="POST"/>')
+            .append($('<input type="hidden" name="'+name+'" value="'+id+'">'))
+            .appendTo($(document.body)) //it has to be added somewhere into the <body>
+            .submit();
+		}
+		
 	</script>
 </body>
 

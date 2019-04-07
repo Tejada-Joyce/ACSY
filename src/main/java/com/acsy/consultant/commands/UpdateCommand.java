@@ -6,10 +6,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.acsy.appcontroller.AbstractCommand;
 import com.acsy.consultant.Consultant;
 import com.acsy.consultant.ConsultantDAO;
 import com.acsy.consultant.ConsultantHelpers;
+import com.acsy.general.AbstractCommand;
 import com.acsy.system.auth.AuthHelpers;
 
 public class UpdateCommand extends AbstractCommand{
@@ -18,11 +18,11 @@ public class UpdateCommand extends AbstractCommand{
   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     if ("POST".equals(request.getMethod()) ){
       if (!AuthHelpers.authenticate_admin(request, response)) {
-        response.sendRedirect("index.jsp");
+        response.sendRedirect("/ACSY/index.jsp");
         return;
       }
 
-      // Creating new Consultant
+      // Updating Consultant
       int consultant_id = Integer.parseInt(request.getParameter("consultant_id"));
       String first_name = request.getParameter("first_name");
       String last_name = request.getParameter("last_name");

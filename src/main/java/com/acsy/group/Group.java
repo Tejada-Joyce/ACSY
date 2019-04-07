@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import com.acsy.assignment.Assignment;
 import com.acsy.client.Client;
-import com.acsy.history.History;
 
 @Entity
 @Table(name="groups")
@@ -19,13 +22,21 @@ public class Group {
 	
 	@Column(name="name")
 	private String name;
-/*
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "groups")
+	
+	@Column(name="status")
+	private boolean status;
+
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "group")
 	private List<Client> clients = new ArrayList<>();
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "groups")
-	private List<History> histories = new ArrayList<>();
-*/	
+	@LazyCollection(LazyCollectionOption.FALSE)
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "group")
+	private List<Assignment> assignments = new ArrayList<>();
+	
+	public Group() {
+		this.status = true;
+	}
+
 	public int getId() {
 		return id;
 	}
@@ -41,7 +52,15 @@ public class Group {
 	public void setName(String name) {
 		this.name = name;
 	}
-/*
+	
+	public boolean isStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+
 	public List<Client> getClients() {
 		return clients;
 	}
@@ -50,12 +69,12 @@ public class Group {
 		this.clients = clients;
 	}
 
-	public List<History> getHistories() {
-		return histories;
+	public List<Assignment> getAssignments() {
+		return assignments;
 	}
 
-	public void setHistories(List<History> histories) {
-		this.histories = histories;
+	public void setAssignments(List<Assignment> assignments) {
+		this.assignments = assignments;
 	}
-*/	
+	
 }

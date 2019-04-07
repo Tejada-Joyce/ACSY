@@ -41,7 +41,16 @@ public class AuthHelpers {
 	
 	public static boolean authenticate_consultant(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		if (getCurrentUser(request, response) instanceof Consultant) return true;
+		System.out.println(getCurrentUser(request, response));
 		return false;
+	}
+	
+	public static boolean destroySession(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		current_user = null;
+		HttpSession session=request.getSession(); 
+	    session.invalidate();
+	    response.sendRedirect("/ACSY/index.jsp");
+	    return true;	
 	}
 	
 }
