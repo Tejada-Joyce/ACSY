@@ -6,10 +6,13 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
 import com.acsy.general.AbstractCommand;
 import com.acsy.group.Group;
 import com.acsy.group.GroupDAO;
 import com.acsy.group.GroupHelpers;
+import com.acsy.group.GroupJSON;
 import com.acsy.system.auth.AuthHelpers;
 
 public class DeleteCommand extends AbstractCommand {
@@ -23,19 +26,19 @@ public class DeleteCommand extends AbstractCommand {
         return;
       }
 
-      // Deleting Group
-      int id = Integer.parseInt(request.getParameter("group_id"));
-
-      GroupDAO group_dao = GroupDAO.getInstance();
-      Group group = group_dao.get(id);
-      if(group_dao.delete(group) != null) {
-        //json response soon    	
-        response.sendRedirect("/ACSY/groups/index");
+      Group group = GroupJSON.getInstance().getExistentFromStringId(request.getReader().readLine());
+      if(GroupDAO.getInstance().delete(group) != null) {
+        //json response soon
+        response.setContentType("application/json");
+        JSONObject resp = new JSONObject();
+        resp.put("message", "Group was deleted successfully.");
+        response.getOutputStream().print(resp.toString());
       } else {
-    	request.setAttribute("error", "Could not delete group, try again.'4");
-        request.getRequestDispatcher(request.getContextPath()+GroupHelpers.index_path).forward(request, response);
+        response.setContentType("application/json");
+        JSONObject resp = new JSONObject();
+        resp.put("message", "Could not delete group, try again.");
+        response.getOutputStream().print(resp.toString());
       }
-
 
     } else {
       response.sendError(400);

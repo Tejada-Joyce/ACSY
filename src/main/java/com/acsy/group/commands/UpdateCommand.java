@@ -6,6 +6,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.json.JSONObject;
+
 import com.acsy.client.Client;
 import com.acsy.client.ClientDAO;
 import com.acsy.client.ClientHelpers;
@@ -14,6 +16,7 @@ import com.acsy.general.AbstractCommand;
 import com.acsy.group.Group;
 import com.acsy.group.GroupDAO;
 import com.acsy.group.GroupHelpers;
+import com.acsy.group.GroupJSON;
 import com.acsy.system.auth.AuthHelpers;
 
 public class UpdateCommand extends AbstractCommand{
@@ -26,23 +29,22 @@ public class UpdateCommand extends AbstractCommand{
         return;
       }
 
-      // Updating Group
-      int group_id = Integer.parseInt(request.getParameter("group_id"));
-      String name = request.getParameter("name");
-		
-      Group group =  GroupDAO.getInstance().get(group_id);    
-      group.setName(name);
-
+      Group group =  GroupJSON.getInstance().getExistentFromString(request.getReader().readLine());
+      
       if(GroupDAO.getInstance().update(group) != null) {
         // send json with response
         // redirecting for now
-        request.setAttribute("notice", "Updated succesfully.");
-        response.sendRedirect("/ACSY/groups/index");
+        response.setContentType("application/json");
+        JSONObject resp = new JSONObject();
+        resp.put("message", "Group was updated successfully.");
+        response.getOutputStream().print(resp.toString());
       } else {
         // send json with response
         // redirecting for now
-        request.setAttribute("error", "Could not update group, try again.");
-        request.getRequestDispatcher(GroupHelpers.index_path).forward(request, response);
+        response.setContentType("application/json");
+        JSONObject resp = new JSONObject();
+        resp.put("message", "Something went wrong.");
+        response.getOutputStream().print(resp.toString());
       }
 
 

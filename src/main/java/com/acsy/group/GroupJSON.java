@@ -1,6 +1,5 @@
 package com.acsy.group;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -39,5 +38,34 @@ public class GroupJSON implements JSONSerializer<Group>{
     
     return json;
   }
-
+  
+  @Override
+  public Group getNewFromString(String json) {
+    JSONObject data = new JSONObject(json);
+    String name = (String) data.get("name");
+    Group group = new Group();
+    group.setName(name);
+    
+    return group;
+  }
+  
+  @Override
+  public Group getExistentFromString(String json) {
+    JSONObject data = new JSONObject(json);
+    Integer id = Integer.parseInt((String)data.get("group_id"));
+    String name = (String) data.get("name");
+    Group group = GroupDAO.getInstance().get(id);
+    group.setName(name);
+    
+    return group;
+  }
+  
+  public Group getExistentFromStringId(String json) {
+    JSONObject data = new JSONObject(json);
+    Integer id = (Integer)data.get("group_id");
+    Group group = GroupDAO.getInstance().get(id);
+    
+    return group;
+  }
+  
 }
