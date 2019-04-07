@@ -123,5 +123,11 @@ public class Client {
 	public void setHistories(List<History> histories) {
 		this.histories = histories;
 	}
+	
+	@Override
+	  public String toString() {
+	    return "Id: " + id + "\nFirst Name: " + first_name + "\nLast Name: " + last_name + "\nPhone: " + phone
+	        + "\nEmail: " + email;
+	  }
 		
 }
